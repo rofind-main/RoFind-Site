@@ -78,3 +78,11 @@ footer>p {
   color: var(--color-muted);
   margin: 0;
 }
+
+/* ETC */
+.CRUCIAL-NOTES {
+  background-color: white;
+  padding: 50px;
+  margin: 20px;
+  border-radius: 10px;
+}
