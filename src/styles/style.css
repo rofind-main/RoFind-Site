@@ -1,0 +1,151 @@
+@import url("./global.css");
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(18, 18, 21);
+  font-family: "Outfit", sans-serif;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  scroll-behavior: smooth;
+}
+
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  border: none;
+  outline: none;
+  display: block;
+  vertical-align: middle;
+}
+
+.appname {
+  height: 35px;
+}
+
+/* WARNINGS */
+.g {
+  color: var(--color-maroon);
+  font-size: small;
+}
+
+.NOTICE {
+  background-color: rgb(155, 10, 10);
+  padding: 5px;
+  color: white;
+}
+
+.NOTICE > a {
+  color: white;
+}
+
+footer > p > a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Main */
+.main {
+  margin-bottom: 200px;
+}
+
+.hero {
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.hero>#biglogo {
+  width: 305px;
+}
+
+.hero-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 350px);
+  gap: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 50px;
+}
+
+section>div {
+  background-color: var(--color-card);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.hero-cards>div>h4 {
+  font-size: 23px;
+  margin: 0;
+}
+
+.hero-cards>div>p {
+  color: var(--color-muted);
+}
+
+/* Platforms */
+.platforms-cards {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 20px;
+}
+
+.platforms-cards>div {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.platforms-cards>div>p {
+  margin: 0;
+}
+
+.windows-container {
+  background-color: var(--color-bg);
+  padding: 20px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.windows-container > img {
+  width: 100px;
+}
+
+.browsers {
+  background-color: var(--color-bg);
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  gap: 15px;
+  padding: 20px;
+  height: fit-content;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.browsers>img {
+  width: 50px;
+}
+
+#platforms-secondary-text {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 15px;
+}
+
+@media (max-width: 800px) {
+  .hero-cards {
+    grid-template-columns: repeat(2, 350px);
+  }
+}
+
+@media (max-width: 500px) {
+  .hero-cards {
+    grid-template-columns: repeat(2, 190px);
+  }
+}
