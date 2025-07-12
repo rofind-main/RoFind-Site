@@ -11,6 +11,18 @@
 
 /* GLOBAL */
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(18, 18, 21);
+  font-family: "Outfit", sans-serif;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 nav {
   position: sticky;
   top: 0;
