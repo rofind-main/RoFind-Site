@@ -56,7 +56,7 @@ footer > p > a {
 
 .hero-cards {
   display: grid;
-  grid-template-columns: repeat(4, 350px);
+  grid-template-columns: repeat(1, 1fr);
   gap: 20px;
   padding-left: 20px;
   padding-right: 20px;
@@ -70,15 +70,15 @@ section>div {
 }
 
 .hero-cards>div>h4 {
-  font-size: 23px;
+  font-size: 30px;
   margin: 0;
 }
 
 .hero-cards>div>p {
   color: var(--color-muted);
+  font-size: 25px;
 }
 
-/* Platforms */
 .platforms-cards {
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -93,7 +93,9 @@ section>div {
 
 .platforms-cards>div>p {
   margin: 0;
+  font-size: 30px;
 }
+
 
 .windows-container {
   background-color: var(--color-bg);
@@ -124,7 +126,7 @@ section>div {
 #platforms-secondary-text {
   margin: 0;
   color: var(--color-muted);
-  font-size: 15px;
+  font-size: 26px;
 }
 
 @media (max-width: 800px) {
@@ -136,5 +138,28 @@ section>div {
 @media (max-width: 500px) {
   .hero-cards {
     grid-template-columns: repeat(2, 190px);
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  .hero-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hero-cards > div > h4 {
+    font-size: 23px;
+  }
+
+  .hero-cards > div > p {
+    font-size: 20px;
+  }
+
+  .platforms-cards > div > p {
+    font-size: 20px;
+  }
+
+  #platforms-secondary-text {
+    font-size: 16px;
   }
 }
