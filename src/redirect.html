@@ -11,8 +11,51 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        @import url('./styles/global.css');
+
+        body {
+            display: grid;
+            min-height: 100vh;
+            margin: 0;
+            place-items: center;
+        }
+    
+        main {
+            margin: auto;
+            text-align: center;
+            place-self: center;
+            margin: 0;
+            background-color: var(--color-card);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 7px black;
+        }
+
+        main > img {
+            width: 300px;
+        }
+
+        main > p {
+            color: white;
+            font-size: 30px;
+            margin: 0;
+        }
+
+        #secondary {
+            color: var(--color-muted);
+            font-size: 15px;
+        }
+
+    </style>
+
 </head>
 <body>
-    <main>Redirect</main>
+    <main>
+        <img src="./images/Cropped_FullColor_White.png">
+        <p>Redirecting</p>
+        <p id="secondary">This might take a while...</p>
+    </main>
 </body>
 </html>
