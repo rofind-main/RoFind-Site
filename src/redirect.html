@@ -57,5 +57,15 @@
         <p>Redirecting</p>
         <p id="secondary">This might take a while...</p>
     </main>
+
+    <script>
+        // On your redirect page (e.g. rofind.vercel.app/callback)
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+
+        if (code) {
+          window.location.href = `rofind://oauth?code=${code}`;
+        }
+    </script>
 </body>
 </html>
