@@ -10,7 +10,6 @@ const toDocId = (placeId) => `game_${placeId}`;
 export async function getGamePlaceIds() {
     const snapshot = await getDocs(collection(db, "games"));
     const ids = snapshot.docs.map(doc => doc.data().placeId);
-    console.log("[Firebase] placeIds:", ids);
     return ids;
 }
 export async function getGameDetails(placeId) {
