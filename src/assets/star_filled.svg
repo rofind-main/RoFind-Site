@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.04 242.44" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style>.cls-1{fill:#fff;}</style>
+    <linearGradient id="gradient-3" bx:pinned="true">
+      <stop offset="0" style="stop-color: rgb(255, 233, 0);"/>
+      <stop offset="1" style="stop-color: rgb(254, 134, 0);"/>
+    </linearGradient>
+    <radialGradient id="gradient-3-0" href="#gradient-3" gradientUnits="userSpaceOnUse" cx="150.482" cy="149.763" r="130.52"/>
+    <bx:export>
+      <bx:file format="svg" path="star.svg"/>
+    </bx:export>
+  </defs>
+  <title>star</title>
+  <path class="cls-1" d="M159.41,34,192.17,98.3a10,10,0,0,0,7.52,5.36L272.4,113.9a10,10,0,0,1,5.47,17.17l-52.2,49.27a10,10,0,0,0-3,9l12.38,69.88a10,10,0,0,1-14.38,10.66L155,236.48a10,10,0,0,0-9.07,0L80.31,269.9a10,10,0,0,1-14.38-10.66l12.38-69.88a10,10,0,0,0-3-9l-52.2-49.27A10,10,0,0,1,28.6,113.9l72.72-10.23a10,10,0,0,0,7.52-5.36L141.59,34A10,10,0,0,1,159.41,34Z" style="paint-order: fill; fill-rule: nonzero; fill: url(&quot;#gradient-3-0&quot;);" transform="translate(-19.98 -28.57)"/>
+</svg>

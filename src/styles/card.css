@@ -1,0 +1,130 @@
+.card {
+    background-color: var(--color-card);
+    padding: 20px;
+    border-radius: var(--radius);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.card-img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    pointer-events: none;
+    user-select: none;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-description {
+    color: var(--color-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.card-play {
+    background-color: var(--color-accent);
+    outline: none;
+    width: 100%;
+    height: 45px;
+    padding: 0 20px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease-in-out;
+    font-size: 16px;
+    font-family: "Outfit", sans-serif;
+    color: var(--color-text);
+}
+
+.card-play:hover {
+    transform: scale(1.15);
+}
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.star-label {
+    color: white;
+    font-size: 13px;
+    margin-left: 4px;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-author {
+    color: var(--color-muted);
+    font-size: 14px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.verified-badge {
+    display: inline-block;
+    height: 15px;
+    width: auto;
+}
+
+@media (max-width: 500px) {
+    .card {
+        flex-direction: column;
+    }
+
+    .card-header {
+        width: 100%;
+    }
+
+    .card-img {
+        width: 100%;
+        height: auto;
+    }
+}

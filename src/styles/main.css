@@ -1,0 +1,27 @@
+@import url("./global.css");
+@import url("./base.css");
+@import url("./card.css");
+@import url("./popup.css");
+
+:root {
+    --radius: 5px;
+    --outline: 2px solid grey;
+}
+
+.appname {
+    color: white;
+}
+
+.g {
+    color: var(--color-maroon);
+    font-size: small;
+}
+
+#card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    padding: 24px;
+    max-width: 1500px;
+    margin: 0 auto;
+}

@@ -1,0 +1,250 @@
+@layer popup;
+
+@layer popup {
+    .popup {
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.45);
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        z-index: 999;
+        padding: var(--popup-padding);
+        box-sizing: border-box;
+    }
+
+    #popup_holder {
+        display: flex;
+        flex-direction: column;
+        gap: 10px
+    }
+
+    #closebuttonholder {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .popup-modal {
+        background-color: var(--color-card);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        max-width: 360px;
+        width: 100%;
+    }
+
+    .popup-header {
+        height: 48px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #4b4b4b4b;
+    }
+
+    .popup-header span {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--color-text);
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+    }
+
+    .popup-close:hover {
+        color: var(--color-text);
+    }
+
+    .popup-body {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .submission-note {
+        background-color: rgba(0, 162, 255, 0.08);
+        border-left: 3px solid var(--color-accent);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        padding: 8px 12px;
+        font-size: 12px;
+        color: var(--color-muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .submission-preview {
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    #submissions_game_preview {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius);
+        object-fit: cover;
+    }
+
+    #submissions_game_name {
+        font-size: 13px;
+        font-weight: 600;
+        max-width: 240px;
+        color: var(--color-text);
+        margin: 0;
+    }
+
+    #submissions_game_author {
+        font-size: 11px;
+        margin: 4px 0 0;
+    }
+
+    #author_link {
+        color: var(--color-muted);
+        text-decoration: none;
+    }
+
+    .submission-field label {
+        display: block;
+        font-size: 11px;
+        color: var(--color-muted);
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+    }
+
+    .submission-row {
+        display: flex;
+        gap: 8px;
+    }
+
+    .submission_placeId {
+        flex: 1;
+        height: 34px;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .submissions_user {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 8px;
+        height: 36px;
+    }
+
+    .submission-actions {
+        display: flex;
+        gap: 8px;
+        padding-top: 15px;
+        border-top: 1px solid var(--border-color);
+        margin-top: 2px;
+    }
+
+    #game_submission_cancel {
+        flex: 1;
+        height: 36px;
+    }
+
+    #game_submission_submit {
+        flex: 2;
+        height: 36px;
+        font-weight: 600;
+    }
+
+    /* Game view popup */
+    .view_container {
+        background-color: var(--color-card);
+        padding: var(--popup-padding);
+        width: min(700px, 90vw);
+        border-radius: 8px;
+        border: 1px solid #2e2e4a;
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 20px;
+        color: var(--color-text);
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    #game_thumbnail {
+        /* width: 160px; */
+        height: 100%;
+        object-fit: cover;
+        border-radius: var(--radius);
+    }
+
+    #leftside {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #game_title {
+        margin: 0;
+    }
+
+    #game_author {
+        margin: 0;
+    }
+
+    #game_description {
+        height: 1fr
+    }
+
+    #play_count {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 8px
+    }
+
+    #star_rating {
+        width: fit-content;
+    }
+
+    .view_container .normal_button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .view_actions {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        gap: 8px;
+        padding-top: 15px;
+        border-top: 1px solid var(--border-color);
+        margin-top: 2px;
+    }
+
+    @media (max-width: 600px) {
+        #view_game {
+            padding: 20px;
+            /* gap: 0px */
+        }
+
+        #popup_holder {
+            gap: 10px;
+            scale: 0.75;
+        }
+
+        #closebuttonholder>button {
+            width: 80px;
+            font-size: 16px;
+        }
+
+        .view_container {
+            grid-template-columns: 1fr;
+            /* scale: 0.9; */
+        }
+
+        #game_thumbnail {
+            width: 100%;
+            height: auto;
+        }
+    }
+}

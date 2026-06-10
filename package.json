@@ -1,0 +1,19 @@
+{
+  "name": "rofind_site",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "KERNL",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "proxy": "node proxy.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "lucide": "^1.17.0",
+    "node-fetch": "^3.3.2"
+  }
+}

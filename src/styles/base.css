@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    background-color: var(--color-bg);
+    font-family: "Outfit", sans-serif;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    scroll-behavior: smooth;
+}
+
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    border: none;
+    outline: none;
+    display: block;
+}
+
+nav {
+    z-index: 999;
+}

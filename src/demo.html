@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>RoFind - Demo</title>
+
+  <link rel="stylesheet" href="./styles/global.css">
+  <link rel="stylesheet" href="./styles/base.css">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/popup.css">
+  <link rel="stylesheet" href="./styles/input.css">
+  <link rel="stylesheet" href="./styles/card.css">
+
+  <!-- removed subission js this just demo and submission is still on work -->
+  <script type="module" src="./scripts/submissionForm.js" defer></script>
+
+  <!-- Temporary icons bruh -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@1.17.0/dist/umd/lucide.min.js"></script>
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <nav>
+    <h1 class="appname">RoFind</h1>
+    <h1 class="g">IN DEVELOPMENT</h1>
+    <div></div>
+    <input class="btn game_submission" type="button" value="Submit Game" style="height: 100%;" />
+    <input class="btn normal_button" type="button" value="User" disabled
+      style="padding-left: 30px; padding-right: 30px; height: 100%;" />
+  </nav>
+
+  <!-- Pop up -> SUBMISSION -->
+  <div class="popup" style="display:none;">
+    <div class="popup-modal">
+
+      <div class="popup-header">
+        <span>Game Submission</span>
+      </div>
+
+      <div class="popup-body">
+        <div class="submission-note">
+          <i class="ti ti-info-circle"></i>
+          You are in demo. Submission won't work.
+        </div>
+
+        <div class="submission-preview">
+          <img id="submissions_game_preview" src="https://placehold.co/56?text=?" alt="Game Icon" />
+          <div>
+            <p id="submissions_game_name">No game selected</p>
+            <p id="submissions_game_author"></p>
+          </div>
+        </div>
+
+        <div class="submission-field">
+          <label>Place ID</label>
+          <div class="submission-row">
+            <input type="number" class="submission_placeId" min="1" placeholder="Enter Place ID..." />
+            <button id="checkplace" class="btn submission_button">Check</button>
+          </div>
+        </div>
+
+        <div class="submission-field">
+          <label>Account</label>
+          <button id="sign_in_roblox" class="btn submission_button submissions_user">
+            Sign in with Roblox
+          </button>
+        </div>
+
+        <div class="submission-actions">
+          <button id="game_submission_cancel" class="btn nofill_button">Cancel</button>
+          <button id="game_submission_submit" class="btn game_submission">Submit Game</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="popup" id="view_game" style="display:none">
+    <div id="popup_holder">
+
+      <div id="closebuttonholder">
+        <div></div>
+        <button type="button" class="btn normal_button"
+        style="padding: 8px 15px;"
+          onclick="document.getElementById('view_game').style.display='none'">Close</button>
+      </div>
+
+      <div class="view_container">
+
+        <img src="" alt="Game Thumbnail" id="game_thumbnail" />
+        <div id="leftside">
+
+          <!-- Game Title -->
+          <div id="game_info">
+            <h2 id="game_title">Game Title</h2>
+
+            <!-- Game Author -->
+            <p id="game_author">
+              <span>By</span>
+              <a href="#" id="author_link">Author Name</a>
+            </p>
+          </div>
+
+
+          <!-- Game Descriptin -->
+          <div id="game_description">
+            <span></span>
+          </div>
+
+          <!-- Play Count -->
+          <div id="play_count">
+            <div><span>Visits: </span><span id="play_count_value">0</span></div>
+
+            <div></div>
+
+            <div id="star_rating">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+              <span id="rating_value">(0)</span>
+            </div>
+          </div>
+
+          <!-- Action buttons yes -->
+          <!-- Play Button -->
+          <div class="view_actions">
+            <a class="btn nofill_button" style="display:flex;align-items:center; gap:3px; justify-content: center;">
+              <image src="./assets/bookmark.svg" style="filter: brightness(0) invert(1)"></image>
+            </a>
+            <button id="play_btn" class="btn game_submission" onclick="startGame()">
+              ▶ Play Now
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Container -->
+  <div id="card-container"></div>
+
+  <footer>
+    <p>
+      RoFind is a community-driven alternative to the native Roblox
+      discovery page, helping users find games through shared support
+      and recommendations.
+    </p>
+    <p>
+      <strong>ROBLOX®</strong> is a registered trademark of Roblox
+      Corporation. All rights and trademarks are the property of their
+      respective owners.
+    </p>
+  </footer>
+
+  <!-- CARDS -->
+
+  <script type="module" defer>
+    import { renderCards } from './scripts/renderCards.js'
+    renderCards();
+
+    console.log("Render cards")
+  </script>
+</body>
+
+</html>
