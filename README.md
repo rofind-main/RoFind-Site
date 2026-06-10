@@ -2,8 +2,8 @@
 > Discover games worth playing, shared by the people who actually play them.
 
 ![Status](https://img.shields.io/badge/status-In%20Development-orange)
-![License](https://img.shields.io/badge/license-Custom-red)
-![Web](https://img.shields.io/badge/web-Demo-blue)
+[![License](https://img.shields.io/badge/license-Custom-red)](#license)
+[![Demo](https://img.shields.io/badge/demo-live-blue)](https://ro-find.vercel.app)
 
 > [!CAUTION]
 > Website version demo is laggy! I had to use proxy to request data from Roblox API's
