@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     const { url } = req.query;
     if (!url) return res.status(400).json({ error: 'Missing url' });
 
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         res.json(data);
     } catch (err) {
         console.error('Proxy error:', err);
-        res.status(500).json({ error: err.message, stack: err.stack });
+        res.status(500).json({ error: err.message });
     }
 }
 
