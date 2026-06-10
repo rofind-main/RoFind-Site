@@ -27,7 +27,7 @@
 <body>
   <nav>
     <h1 class="appname">RoFind</h1>
-    <h1 class="g">IN DEVELOPMENT</h1>
+    <h1 class="g">DEMO</h1>
     <div></div>
     <input class="btn game_submission" type="button" value="Submit Game" style="height: 100%;" />
     <input class="btn normal_button" type="button" value="User" disabled
@@ -66,7 +66,8 @@
 
         <div class="submission-field">
           <label>Account</label>
-          <button id="sign_in_roblox" class="btn submission_button submissions_user">
+          <button id="sign_in_roblox" class="btn submission_button submissions_user" disabled
+            style="cursor: not-allowed;">
             Sign in with Roblox
           </button>
         </div>
@@ -85,8 +86,7 @@
 
       <div id="closebuttonholder">
         <div></div>
-        <button type="button" class="btn normal_button"
-        style="padding: 8px 15px;"
+        <button type="button" class="btn normal_button" style="padding: 8px 15px;"
           onclick="document.getElementById('view_game').style.display='none'">Close</button>
       </div>
 

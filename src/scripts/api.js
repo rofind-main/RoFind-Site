@@ -1,7 +1,5 @@
 const IS_VERCEL = window.location.hostname !== '127.0.0.1' && window.location.hostname !== 'localhost';
-const proxy = (url) => IS_VERCEL
-    ? `/api/proxy?url=${encodeURIComponent(url)}`
-    : `http://localhost:3000/api?url=${encodeURIComponent(url)}`;
+const proxy = (url) => `/api/proxy?url=${encodeURIComponent(url)}`;
 
 export async function getUniverseId(placeId) {
     console.log(placeId)

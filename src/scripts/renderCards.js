@@ -15,6 +15,13 @@ function formatCount(n) {
 export const renderCards = async () => {
     const placeIds = await FirebaseAPI.getGamePlaceIds();
 
+    const skeletons = placeIds.map(() => {
+        const el = document.createElement('div');
+        el.classList.add('card', 'card-skeleton');
+        cardContainer.appendChild(el);
+        return el;
+    });
+
     const results = await Promise.allSettled(
         placeIds.map(async (placeId) => {
             const universeId = await RobloxApi.getUniverseId(placeId);
@@ -38,20 +45,21 @@ export const renderCards = async () => {
                 name: gameData.name,
                 description: gameData.description,
                 placeId,
+                playCount,
                 imageUrl,
                 author,
                 rating: firestoreData?.user_rating ?? 0,
                 verifiedIcon: VERIFIED_ICON,
-                playCount,
                 verified: gameData.creator?.hasVerifiedBadge ?? false,
             });
         })
     );
 
-    results.forEach((result) => {
+    results.forEach((result, i) => {
         if (result.status === 'fulfilled') {
-            cardContainer.appendChild(result.value);
+            skeletons[i].replaceWith(result.value);
         } else {
+            skeletons[i].remove();
             console.warn('[SKIP]', result.reason.message);
         }
     });
