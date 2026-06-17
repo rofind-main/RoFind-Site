@@ -18,7 +18,13 @@ async function fetchWithTimeout(url, timeout = 5000) {
     try {
         const res = await fetch(url, { signal: controller.signal });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return await res.json();
+        const text = await res.text();
+        try {
+            return JSON.parse(text);
+        } catch {
+            console.error('Invalid JSON from:', url, text.slice(0, 200));
+            throw new Error(`Invalid JSON from ${url}`);
+        }
     } catch (err) {
         if (err.name === 'AbortError') throw new Error(`Request timed out: ${url}`);
         throw err;

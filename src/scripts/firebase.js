@@ -14,10 +14,8 @@ export async function getGamePlaceIds() {
 }
 export async function getGameDetails(placeId) {
     const docId = toDocId(placeId);
-    console.log('looking up doc:', docId);
     const ref = doc(db, "games", docId);
     const snap = await getDoc(ref);
-    console.log('exists:', snap.exists(), snap.data());
     return snap.exists() ? snap.data() : null;
 }
 
