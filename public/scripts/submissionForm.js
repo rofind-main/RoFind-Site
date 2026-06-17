@@ -83,15 +83,12 @@ async function submitSubmission() {
             title: 'New Game Submission',
             description: 'A new game has been submitted for review.',
             color: 0x262942,
+            thumbnail: ui.iconPreview.src,
+            placeId,
             fields: [
                 { name: 'Game Name', value: gameName, inline: true },
                 { name: 'Place ID', value: placeId, inline: true },
                 { name: 'Author', value: gameAuthor, inline: false },
-            ],
-            buttons: [
-                { label: '✅ Approve', url: `https://ro-find.vercel.app/api/review?placeId=${placeId}&action=approve&token=${process.env.ADMIN_SECRET}` },
-                { label: '❌ Decline', url: `https://ro-find.vercel.app/api/review?placeId=${placeId}&action=decline&token=${process.env.ADMIN_SECRET}` },
-                { label: '🎮 Play', url: `https://www.roblox.com/games/${placeId}` },
             ]
         });
         console.log('Submitted successfully');
