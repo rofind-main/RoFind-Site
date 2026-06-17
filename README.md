@@ -28,17 +28,6 @@ RoFind is an open-source platform where players recommend, rate, and discover ga
 - Submit your own game for others to find
 - Login to save your reviews and ratings
 
-## Getting Started
-
-You'll need Node.js `v18+` and npm installed.
-
-```bash
-git clone https://github.com/RoFind/RoFind-Site.git
-cd rofind
-npm install
-npm start
-```
-
 ## Contributing
 
 Got an idea or found a bug? Contributions are welcome! (I'm still new with JS and stuff so a contribution will be really appreciated :D)

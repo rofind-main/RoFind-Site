@@ -1,19 +1,24 @@
-const https = require('https');
+import https from 'https'
 
 function fetchUrl(url) {
     return new Promise((resolve, reject) => {
-        https.get(url, (res) => {
+        const request = https.get(url, (res) => {
             let data = '';
             res.on('data', chunk => data += chunk);
             res.on('end', () => {
                 try { resolve(JSON.parse(data)); }
                 catch (e) { reject(e); }
             });
-        }).on('error', reject);
+        });
+        request.on('error', reject);
+        request.setTimeout(10000, () => {
+            request.destroy();
+            reject(new Error('Upstream request timed out'));
+        });
     });
 }
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
     const { url } = req.query;
     if (!url) return res.status(400).json({ error: 'Missing url' });
 
@@ -26,5 +31,3 @@ module.exports = async function handler(req, res) {
         res.status(500).json({ error: err.message });
     }
 }
-
-// Moved??

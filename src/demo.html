@@ -27,10 +27,13 @@
 
 <body>
   <nav>
-    <span style="display: flex; flex-direction: row; gap: 10px">
-      <h1 class="appname" style="margin: 0; ">RoFind</h1>
-      <h1 class="g" style="margin: 0; text-align: end;">WEB</h1>
-    </span>
+    <a href="./index.html" style="text-decoration: none;">
+      <span style="display: flex; flex-direction: row; gap: 10px">
+        <h1 class="appname" style="margin: 0; ">RoFind</h1>
+        <h1 class="g" style="margin: 0; text-align: end;">WEB</h1>
+      </span>
+    </a>
+
 
     <div></div>
     <input class="btn game_submission" type="button" value="Submit Game" style="height: 100%;" />
@@ -172,8 +175,6 @@
   <script type="module" defer>
     import { renderCards } from './scripts/renderCards.js'
     renderCards();
-
-    console.log("Render cards")
   </script>
 </body>
 

@@ -61,13 +61,24 @@ export function createCard({
     viewer.querySelector('#game_thumbnail').src = imageUrl;
     viewer.querySelector('#game_title').textContent = name;
     viewer.querySelector('#author_link').textContent = author;
-    viewer.querySelector("#play_count_value").textContent = playCount
+    viewer.querySelector("#play_count_value").textContent = playCount;
+    viewer.querySelector('#rating_value').textContent = `(${rating})`;
+
+    viewer.querySelectorAll('.star').forEach((star, i) => {
+      star.style.color = i < rating ? '#FFD700' : '#555';
+    });
+
     viewer.style.display = 'grid';
 
-    viewer.querySelector("#play_btn").addEventListener('click', (e) => {
-      window.location.href = `roblox://placeId=${placeId}`;
-    })
+    // Replace button to remove all old listeners
+    const oldBtn = viewer.querySelector("#play_btn");
+    const newBtn = oldBtn.cloneNode(true);
+    oldBtn.parentNode.replaceChild(newBtn, oldBtn);
 
+    newBtn.addEventListener('click', () => {
+      console.log("placeId:", placeId);
+      window.location.href = `roblox://placeId=${placeId}`;
+    });
   });
 
   return card;
