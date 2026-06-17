@@ -1,5 +1,3 @@
-// public/scripts/hook/submissionHook.js
-
 async function sendToDiscord(payload) {
     const res = await fetch('/api/discord', {
         method: 'POST',
