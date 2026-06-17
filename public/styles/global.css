@@ -1,0 +1,69 @@
+@layer userPage, popup;
+
+:root {
+  --color-bg: rgb(18, 18, 21);
+  --color-card: rgb(39, 41, 48);
+  --color-text: white;
+  --color-muted: rgb(126, 126, 126);
+  --color-accent: rgb(51, 95, 255);
+  --color-maroon: rgb(150, 0, 0);
+  --color-input-fields: rgb(32, 33, 39);
+  --color-input-button-hover: rgb(48, 50, 59);
+  --color-disabled-button: grey;
+
+  /* Buttons */
+  --button-color-normal: rgb(255, 255, 255);
+
+  --submission-note-bg: rgb(247, 246, 131);
+  --submission-note-border: rgb(255, 204, 0);
+  --submission-note-text: rgb(0, 0, 0);
+
+  --border-color: #4b4b4b4b;
+
+  --image-size: 130px;
+  --drop-shadow-blur: 3px;
+  --radius: 5px;
+  --outline: 2px solid grey;
+  --padding: 50px;
+
+  --popup-padding: 20px
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, rgb(25, 26, 31) 0%, rgba(255, 255, 255, 0) 100%);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: auto 1fr max-content max-content;
+  gap: 20px;
+  align-items: center;
+}
+
+nav>* {
+  margin: 0;
+}
+
+footer {
+  bottom: 0;
+  margin-top: 50px;
+  background-color: rgb(25, 26, 31);
+  padding: 30px 70px 100px;
+}
+
+footer>p {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* Loader thing */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99991;
+  transition: opacity 0.3s ease;
+}
