@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     const { title, description, fields, color, thumbnail, placeId } = req.body;
 
     const baseUrl = req.headers.host.includes('localhost')
-        ? 'https://ro-find.vercel.app'  // use production URL even in local dev
+        ? 'https://ro-find.vercel.app'
         : `https://${req.headers.host}`;
     const token = process.env.ADMIN_TOKEN;
 
@@ -37,10 +37,6 @@ export default async function handler(req, res) {
         }]
     };
 
-    console.log('placeId:', placeId);
-    console.log('buttons:', buttons);
-    console.log('payload components:', JSON.stringify(payload.components));
-
     try {
         const discordRes = await fetch(webhookUrl, {
             method: 'POST',
@@ -50,10 +46,14 @@ export default async function handler(req, res) {
 
         if (!discordRes.ok) {
             const err = await discordRes.text();
+            console.error('Discord response:', err);
             throw new Error(`Discord error: ${discordRes.status} - ${err}`);
         }
+
+        console.log('Discord success:', discordRes.status);
         res.status(200).json({ ok: true });
     } catch (err) {
+        console.error('Handler error:', err.message);
         res.status(500).json({ error: err.message });
     }
 }
