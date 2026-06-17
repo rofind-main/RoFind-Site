@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     };
 
     try {
-        const discordRes = await fetch(webhookUrl, {
+        const discordRes = await fetch(webhookUrl + '?with_components=true', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
