@@ -1,4 +1,5 @@
 import * as RobloxApi from './api.js';
+import * as DiscordSubmissionHook from './hook/submissionHook.js'
 
 const popup = document.querySelector(".popup");
 const gameSubmissionBtn = document.querySelector(".game_submission");
@@ -58,6 +59,43 @@ async function checkPlaceId() {
     }
 }
 
+function verifyUser() {
+    console.log("Verify user");
+}
+
+async function submitSubmission() {
+    const placeId = ui.placeId.value;
+    if (!placeId) {
+        console.error('Error: Empty place ID');
+        return;
+    }
+
+    if (!checkPlaceBtn.classList.contains('checked')) {
+        console.error('Error: Place not verified');
+        return;
+    }
+
+    const gameName = ui.gameName.textContent;
+    const gameAuthor = ui.gameAuthor.textContent;
+
+    try {
+        await DiscordSubmissionHook.sendToDiscord({
+            title: 'New Game Submission',
+            description: 'A new game has been submitted for review.',
+            color: 0x5865F2,
+            fields: [
+                { name: 'Game Name', value: gameName, inline: true },
+                { name: 'Place ID', value: placeId, inline: true },
+                { name: 'Author', value: gameAuthor, inline: false },
+            ]
+        });
+        console.log('Submitted successfully');
+        closeSubmissionForm();
+    } catch (err) {
+        console.error('Submission failed:', err);
+    }
+}
+
 function cancelSubmission() {
     closeSubmissionForm();
 }
@@ -65,3 +103,6 @@ function cancelSubmission() {
 gameSubmissionBtn?.addEventListener("click", openSubmissionForm);
 cancelBtn?.addEventListener("click", cancelSubmission);
 checkPlaceBtn?.addEventListener("click", checkPlaceId);
+
+verifyUserBtn?.addEventListener("click", verifyUser);
+submitBtn?.addEventListener("click", submitSubmission);

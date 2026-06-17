@@ -100,6 +100,7 @@
     }
 
     #submissions_game_author {
+        color: var(--color-muted);
         font-size: 11px;
         margin: 4px 0 0;
     }
