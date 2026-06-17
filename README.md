@@ -10,11 +10,11 @@
 ---
 
 <p align="center">
-  <img src="./src/images/Preview/Main.png" width="45%" />
-  <img src="./src/images/Preview/User.png" width="45%" />
+  <img src="./public/images/Preview/Main.png" width="45%" />
+  <img src="./public/images/Preview/User.png" width="45%" />
 </p>
 <p align="center">
-  <img src="./src/images/Preview/Preview.png" width="25%" />
+  <img src="./public/images/Preview/Preview.png" width="25%" />
 </p>
 <p align="center"><sub>These are early screenshots.</sub></p>
 
