@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     const token = process.env.ADMIN_TOKEN;
 
     const buttons = [
-        { label: '✅ Approve', url: `${baseUrl}/api/review?placeId=${placeId}&action=approve&token=` },
-        { label: '❌ Decline', url: `${baseUrl}/api/review?placeId=${placeId}&action=decline&token=` },
+        { label: '✅ Approve', url: `${baseUrl}/api/review?placeId=${placeId}&game_name=${encodeURIComponent(game_name)}&action=approve&token=${token}` },
+        { label: '❌ Decline', url: `${baseUrl}/api/review?placeId=${placeId}&game_name=${encodeURIComponent(game_name)}&action=decline&token=${token}` },
         { label: '🎮 Play', url: `https://www.roblox.com/games/${placeId}` },
     ];
 
