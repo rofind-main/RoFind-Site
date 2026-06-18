@@ -5,7 +5,16 @@ async function sendToDiscord(payload) {
         body: JSON.stringify(payload),
     });
 
-    if (!res.ok) throw new Error(`Failed: ${res.status}`);
+    if (!res.ok) {
+        let body;
+        try {
+            body = await res.json();
+        } catch {
+            body = await res.text();
+        }
+        console.error('Discord error body:', body);
+        throw new Error(`Failed: ${res.status}`);
+    }
     return res.status;
 }
 
