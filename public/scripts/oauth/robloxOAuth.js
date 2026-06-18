@@ -6,7 +6,7 @@ const {
     generateState
 } = require('./pkce');
 
-const CLIENT_ID = '8424212320330349269';
+const CLIENT_ID = process.env.OAUTH_CLIENT_ID;
 const REDIRECT_URI = 'https://ro-find.vercel.app/redirect.html';
 
 const AUTH_URL = 'https://apis.roblox.com/oauth/v1/authorize';

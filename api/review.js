@@ -4,8 +4,11 @@ import { initializeApp, getApps, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
 if (!getApps().length) {
+    const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT;
+    if (!serviceAccount) throw new Error('FIREBASE_SERVICE_ACCOUNT env var is not set');
+
     initializeApp({
-        credential: credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT))
+        credential: cert(JSON.parse(serviceAccount))
     });
 }
 
@@ -17,11 +20,12 @@ export default async function handler(req, res) {
 
     if (!placeId) return res.status(400).json({ error: 'Missing placeId' });
     if (!action) return res.status(400).json({ error: 'Missing action' });
-    if (token !== process.env.ADMIN_SECRET) return res.status(403).json({ error: 'Forbidden' });
+    if (token !== process.env.ADMIN_TOKEN) return res.status(403).json({ error: 'Forbidden' });
 
     try {
         if (action === 'approve') {
             await db.collection('games').doc(toDocId(placeId)).set({
+                game_name,
                 placeId,
                 user_rating: 0,
             });
@@ -35,7 +39,7 @@ export default async function handler(req, res) {
                 </body></html>
             `);
         } else if (action === 'decline') {
-            await db.collection('submissions').doc(toDocId(placeId)).delete();
+            await db.collection('games').doc(toDocId(placeId)).delete();
             return res.status(200).send(`
                 <html><body style="font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#1a1a2e;">
                     <div style="text-align:center;color:white;">
