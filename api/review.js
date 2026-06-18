@@ -16,12 +16,12 @@ const db = getFirestore();
 const toDocId = (placeId) => `game_${placeId}`;
 
 export default async function handler(req, res) {
-    const { placeId, token, action } = req.query;
+    const { placeId, token, action, game_name } = req.query;
 
     if (!placeId) return res.status(400).json({ error: 'Missing placeId' });
     if (!action) return res.status(400).json({ error: 'Missing action' });
+    if (!game_name) return res.status(400).json({ error: 'Missing game_name' });
     if (token !== process.env.ADMIN_TOKEN) return res.status(403).json({ error: 'Forbidden' });
-
     try {
         if (action === 'approve') {
             await db.collection('games').doc(toDocId(placeId)).set({
