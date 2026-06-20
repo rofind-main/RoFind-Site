@@ -1,27 +1,29 @@
 # RoFind
+
 > Discover games worth playing, shared by the people who actually play them.
 
-> I've been working on the desktop version but for now ill push more features on the web version! (6/13/2026)
-
-![Status](https://img.shields.io/badge/status-In%20Development-orange)
-[![License](https://img.shields.io/badge/license-Custom-red)](#license)
-[![Demo](https://img.shields.io/badge/demo-live-blue)](https://ro-find.vercel.app)
+> I've been working on the desktop version but for now I'll push more features on the web version! (6/13/2026)
 
 ---
 
-<p align="center">
-  <img src="./public/images/Preview/Main.png" width="45%" />
-  <img src="./public/images/Preview/User.png" width="45%" />
-</p>
-<p align="center">
-  <img src="./public/images/Preview/Preview.png" width="25%" />
-</p>
-<p align="center"><sub>These are early screenshots.</sub></p>
+## Screenshots
+
+![Home](./public/images/Preview/Main.png)
+
+![User Profile](./public/images/Preview/User.png)
+
+![Game Preview](./public/images/Preview/Preview.png)
+
+*These are early screenshots.*
 
 ## What is RoFind?
-RoFind is an open-source platform where players recommend, rate, and discover games together. Inspired by [better discovery](https://www.roblox.com/games/15317947079/better-discovery) - Mariage Sorcière on Roblox.
 
-## (_Planned_) Features
+RoFind is an open-source platform where players recommend, rate, and discover games together.
+
+Inspired by Better Discovery - Mariage Sorcière on Roblox.
+
+## Planned Features
+
 - Browse games submitted by the community
 - Rate and leave reviews
 - Filter by genre, author, or popularity
@@ -29,15 +31,17 @@ RoFind is an open-source platform where players recommend, rate, and discover ga
 - Login to save your reviews and ratings
 
 ## Roadmap
-- [ ] Game submission system
+
+- [x] Game submission system
 - [ ] User profiles
 - [ ] Rating & review system
 - [ ] Search & filtering
 - [ ] Moderation tools
 
 ## License
-[MIT](./LICENSE)
+
+MIT License. See `LICENSE`.
 
 ---
 
-<p align="center">Built by the community, for the community.</p>
+Built by the community, for the community.

@@ -64,6 +64,10 @@ export function createCard({
     viewer.querySelector("#play_count_value").textContent = playCount;
     viewer.querySelector('#rating_value').textContent = `(${rating})`;
 
+    viewer.querySelector('#rate_btn').addEventListener('click', (e) => {
+      
+    })
+
     viewer.querySelectorAll('.star').forEach((star, i) => {
       star.style.color = i < rating ? '#FFD700' : '#555';
     });

@@ -85,6 +85,7 @@ async function submitSubmission() {
             color: 0x262942,
             thumbnail: ui.iconPreview.src,
             placeId,
+            gameName,
             fields: [
                 { name: 'Game Name', value: gameName, inline: true },
                 { name: 'Place ID', value: placeId, inline: true },

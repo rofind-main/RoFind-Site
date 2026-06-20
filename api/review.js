@@ -1,5 +1,3 @@
-// FIXME: API doesnt respond
-
 import { initializeApp, getApps, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
@@ -22,7 +20,7 @@ export default async function handler(req, res) {
     if (!action) return res.status(400).json({ error: 'Missing action' });
     if (action === 'approve' && !game_name) return res.status(400).json({ error: 'Missing game_name' });
     if (token !== process.env.ADMIN_TOKEN) return res.status(403).json({ error: 'Forbidden' });
-    
+
     try {
         if (action === 'approve') {
             await db.collection('games').doc(toDocId(placeId)).set({

@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
     if (!webhookUrl) return res.status(500).json({ error: 'Webhook not configured' });
 
-    const { title, description, fields, color, thumbnail, placeId, game_name } = req.body;
+    const { title, description, fields, color, thumbnail, placeId, gameName } = req.body;
 
     const baseUrl = req.headers.host.includes('localhost')
         ? 'https://ro-find.vercel.app'
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     const token = process.env.ADMIN_TOKEN;
 
     const buttons = [
-        { label: '✅ Approve', url: `${baseUrl}/api/review?placeId=${placeId}&game_name=${game_name}&action=approve&token=${token}` },
+        { label: '✅ Approve', url: `${baseUrl}/api/review?placeId=${placeId}&game_name=${gameName}&action=approve&token=${token}` },
         { label: '❌ Decline', url: `${baseUrl}/api/review?placeId=${placeId}&action=decline&token=${token}` },
         { label: '🎮 Play', url: `https://www.roblox.com/games/${placeId}` },
     ];
