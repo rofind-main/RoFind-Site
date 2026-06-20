@@ -6,16 +6,6 @@
 
 ---
 
-## Screenshots
-
-![Home](./public/images/Preview/Main.png)
-
-![User Profile](./public/images/Preview/User.png)
-
-![Game Preview](./public/images/Preview/Preview.png)
-
-*These are early screenshots.*
-
 ## What is RoFind?
 
 RoFind is an open-source platform where players recommend, rate, and discover games together.

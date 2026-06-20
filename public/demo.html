@@ -141,9 +141,10 @@
               <image src="./assets/bookmark.svg" style="filter: brightness(0) invert(1)"></image>
             </a>
 
-            <a class="btn nofill_button" style="display:flex;align-items:center; gap:3px; justify-content: center;">
-              <p id="rate_btn">Rate</p>
-            </a>
+            <!-- <a id="rate_btn" class="btn nofill_button"
+              style="display:flex;align-items:center; gap:3px; justify-content: center;">
+              <p>Rate</p>
+            </a> -->
 
             <a id="play_btn" class="btn game_submission"
               style="display:flex;align-items:center; gap:3px; justify-content: center;">
@@ -159,11 +160,35 @@
 
   <!-- Rate popup -->
 
-  <!-- <div class="popup" id="rate_popup">
-    <div class="popup-modal">
-      <a>Hello</a>
+  <div class="popup" id="rate_game" style="display:none">
+    <div id="popup_holder">
+
+      <div id="closebuttonholder">
+        <div></div>
+        <button type="button" class="btn normal_button" style="padding: 8px 15px;"
+          onclick="document.getElementById('rate_game').style.display='none'">Close</button>
+      </div>
+
+
+
+      <div class="view_container">
+        <!-- STars -->
+        <div id="stars_holder">
+          <a id="star"><img src="./assets/star_blank.svg" id="star_1" data-value="1"></a>
+          <a id="star"><img src="./assets/star_blank.svg" id="star_2" data-value="2"></a>
+          <a id="star"><img src="./assets/star_blank.svg" id="star_3" data-value="3"></a>
+          <a id="star"><img src="./assets/star_blank.svg" id="star_4" data-value="4"></a>
+          <a id="star"><img src="./assets/star_blank.svg" id="star_5" data-value="5"></a>
+        </div>
+
+        <!-- Submit -->
+        <div>
+          <button class="btn game_submission" id="submit_stars">Submit</button>
+        </div>
+
+      </div>
     </div>
-  </div> -->
+  </div>
 
 
   <!-- Container -->

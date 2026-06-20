@@ -64,10 +64,6 @@ export function createCard({
     viewer.querySelector("#play_count_value").textContent = playCount;
     viewer.querySelector('#rating_value').textContent = `(${rating})`;
 
-    viewer.querySelector('#rate_btn').addEventListener('click', (e) => {
-      
-    })
-
     viewer.querySelectorAll('.star').forEach((star, i) => {
       star.style.color = i < rating ? '#FFD700' : '#555';
     });
@@ -78,6 +74,10 @@ export function createCard({
     const oldBtn = viewer.querySelector("#play_btn");
     const newBtn = oldBtn.cloneNode(true);
     oldBtn.parentNode.replaceChild(newBtn, oldBtn);
+
+    // viewer.querySelector('#rate_btn').addEventListener('click', (e) => {
+    //   document.getElementById('rate_game').style.display = 'grid';
+    // })
 
     newBtn.addEventListener('click', () => {
       console.log("placeId:", placeId);
