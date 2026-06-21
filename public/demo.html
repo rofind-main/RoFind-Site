@@ -43,6 +43,54 @@
       style="padding-left: 30px; padding-right: 30px; height: 100%;" />
   </nav>
 
+  <!-- Fall back -->
+
+  <noscript>
+    <style>
+      #noscript_header,
+      p {
+        color: white;
+        margin: 0
+      }
+
+      pre {
+        margin: 0;
+        border-radius: 5px;
+        background-color: grey;
+        border: 2px solid white;
+        padding: 5px;
+        color: black
+      }
+
+      i {
+        color: grey
+      }
+
+      i>a {
+        color: white
+      }
+
+      footer {
+        display: none;
+      }
+    </style>
+
+    <div class="popup">
+      <div class="popup-modal">
+
+        <div class="popup-body">
+          <b id="noscript_header">NoScript detected</b>
+          <p>Services that needs JavaScript:</p>
+          <pre>Firebase (Firestore), gstatic, and jsdelivr</pre>
+          <p>JavaScript should be enabled for this page to work!</p>
+          <i>If you have NoScript enabled, please disable it. Guide: <a href="https://noscript.net/usage/"
+              target="_blank">NoScript Guide</a></i>
+        </div>
+
+      </div>
+    </div>
+  </noscript>
+
   <!-- Pop up -> SUBMISSION -->
   <div class="popup" style="display:none;">
     <div class="popup-modal">
