@@ -24,7 +24,7 @@ Inspired by Better Discovery - Mariage Sorcière on Roblox.
 
 - [x] Game submission system
 - [ ] User profiles
-- [ ] Rating & review system
+- [x] Rating & review system
 - [ ] Search & filtering
 - [ ] Moderation tools
 
