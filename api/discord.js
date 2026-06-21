@@ -33,7 +33,7 @@ export default async function handler(req, res) {
                     type: 2,
                     style: 5,
                     label: '❌ Decline',
-                    url: `${baseUrl}/api/review?placeId=${placeId}&action=decline&token=${token}`,
+                    url: `${baseUrl}/api/review?placeId=${placeId}&game_name=${encodeURIComponent(gameName)}&action=decline&token=${token}`,
                 },
                 {
                     type: 2,
