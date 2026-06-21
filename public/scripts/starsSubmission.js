@@ -69,7 +69,8 @@ document.querySelector('#submit_stars')?.addEventListener('click', async () => {
     // Check if already rated
     const storageKey = `rated_${placeId}`;
     if (localStorage.getItem(storageKey)) {
-        alert('You have already rated this game.');
+        // alert('You have already rated this game.');
+        document.getElementById("already_rated").style = "display: grid"
         return;
     }
 
@@ -98,6 +99,7 @@ document.querySelector('#submit_stars')?.addEventListener('click', async () => {
         submitBtn.textContent = '✅ Rated!';
         setTimeout(() => {
             document.getElementById('rate_game').style.display = 'none';
+            document.getElementById('already_rated').style.display = 'none';
             resetRating();
             submitBtn.disabled = false;
             submitBtn.textContent = 'Submit Rating';

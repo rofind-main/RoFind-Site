@@ -67,3 +67,27 @@ footer>p {
   z-index: 99991;
   transition: opacity 0.3s ease;
 }
+
+.note {
+  padding: 24px;
+  color: white;
+
+}
+
+.note>.notice {
+  padding: 0px 24px;
+  border-radius: 10px;
+  background-color: rgb(51, 139, 211);
+  border: 2px solid rgb(111, 190, 255);
+
+  a {
+    color: white;
+    text-decoration-style: dashed;
+    text-decoration-color: rgba(255, 255, 255, 0.6);
+  }
+
+  a:hover {
+    text-decoration-style: solid;
+    text-decoration-color: white;
+  }
+}

@@ -27,6 +27,7 @@
 </head>
 
 <body>
+  <!-- Nav -->
   <nav>
     <a href="./index.html" style="text-decoration: none;">
       <span style="display: flex; flex-direction: row; gap: 10px">
@@ -42,54 +43,6 @@
       style="padding-left: 30px; padding-right: 30px; height: 100%;" />
   </nav>
 
-  <!-- Fall back -->
-
-  <noscript>
-    <style>
-      #noscript_header,
-      p {
-        color: white;
-        margin: 0
-      }
-
-      pre {
-        margin: 0;
-        border-radius: 5px;
-        background-color: grey;
-        border: 2px solid white;
-        padding: 5px;
-        color: black
-      }
-
-      i {
-        color: grey
-      }
-
-      i>a {
-        color: white
-      }
-
-      footer {
-        display: none;
-      }
-    </style>
-
-    <div class="popup">
-      <div class="popup-modal">
-
-        <div class="popup-body">
-          <b id="noscript_header">NoScript detected</b>
-          <p>Services that needs JavaScript:</p>
-          <pre>Firebase (Firestore), gstatic, and jsdelivr</pre>
-          <p>JavaScript should be enabled for this page to work!</p>
-          <i>If you have NoScript enabled, please disable it. Guide: <a href="https://noscript.net/usage/"
-              target="_blank">NoScript Guide</a></i>
-        </div>
-
-      </div>
-    </div>
-  </noscript>
-
   <!-- Pop up -> SUBMISSION -->
   <div class="popup" style="display:none;">
     <div class="popup-modal">
@@ -99,8 +52,9 @@
 
       <div class="popup-body">
         <div class="submission-note">
-          <i class="ti ti-info-circle"></i>
-          Submissions now work in website version!
+          <span>Example: ...games/<b style="color:yellow">142823291</b>/Murder-Mystery-2
+          </span>
+
         </div>
 
         <div class="submission-preview">
@@ -127,8 +81,9 @@
     </div>
   </div>
 
-  <div class="popup" id="view_game" style="display:none">
-    <div id="popup_holder">
+  <!-- View game popup -->
+  <div class="popup" id="view_game" style="z-index: 990; ;display:none">
+    <div class="popup_holder">
 
       <div id="closebuttonholder">
         <div></div>
@@ -198,10 +153,26 @@
 
   </div>
 
-  <!-- Rate popup -->
+  <!-- Custom popup -> Already Rated -->
+  <div class="popup" id="already_rated" style="z-index: 998; ;display:none">
+    <div class="popup_holder">
 
-  <div class="popup" id="rate_game" style="display:none">
-    <div id="popup_holder">
+      <div id="closebuttonholder">
+        <div></div>
+        <button type="button" class="btn normal_button" style="padding: 8px 15px;"
+          onclick="document.getElementById('already_rated').style.display='none'">Close</button>
+      </div>
+
+      <div class="view_container" style="width: min(400px, 90vw)">
+        <p style="color: white">You have already rated this game!</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Rate popup -->
+  <div class="popup" id="rate_game" style="z-index: 995; ;display:none">
+    <div class="popup_holder">
 
       <div class="rating_container">
         <!-- STars -->
@@ -226,6 +197,18 @@
     </div>
   </div>
 
+  <!-- ---------------------------DIVISIONNNNNN---------------------------------- -->
+
+  <div class="note">
+    <div class="note-body notice">
+      <p>
+        Playing directly requires the Roblox Player installed and an active account.
+        <a href="https://www.roblox.com/download/client" target="_blank" rel="noopener noreferrer">
+          Download ↗
+        </a>
+      </p>
+    </div>
+  </div>
 
   <!-- Container -->
   <div id="card-container">
@@ -245,11 +228,57 @@
   </footer>
 
   <!-- CARDS -->
-
   <script type="module" defer>
     import { renderCards } from './scripts/renderCards.js'
     renderCards();
   </script>
+
+  <!-- Fall back -->
+  <noscript>
+    <style>
+      #noscript_header,
+      p {
+        color: white;
+        margin: 0
+      }
+
+      pre {
+        margin: 0;
+        border-radius: 5px;
+        background-color: grey;
+        border: 2px solid white;
+        padding: 5px;
+        color: black
+      }
+
+      i {
+        color: grey
+      }
+
+      i>a {
+        color: white
+      }
+
+      footer {
+        display: none;
+      }
+    </style>
+
+    <div class="popup">
+      <div class="popup-modal">
+
+        <div class="popup-body">
+          <b id="noscript_header">NoScript detected</b>
+          <p>Services that needs JavaScript:</p>
+          <pre>Firebase (Firestore), gstatic, and jsdelivr</pre>
+          <p>JavaScript should be enabled for this page to work!</p>
+          <i>If you have NoScript enabled, please disable it. Guide: <a href="https://noscript.net/usage/"
+              target="_blank">NoScript Guide</a></i>
+        </div>
+
+      </div>
+    </div>
+  </noscript>
 </body>
 
 </html>
