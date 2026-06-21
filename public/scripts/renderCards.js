@@ -5,7 +5,7 @@ import { createCard } from "./card.js";
 const cardContainer = document.getElementById("card-container");
 const VERIFIED_ICON = './assets/verifieduser.png';
 
-function formatCount(n) {
+export function formatCount(n) {
     if (n >= 1_000_000_000) return (n / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B';
     if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
     if (n >= 1_000) return (n / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
@@ -61,7 +61,8 @@ export const renderCards = async () => {
             playCount,
             imageUrl,
             author,
-            rating: firestoreData?.user_rating,
+            rating: firestoreData?.rating_avg ?? 0,
+            ratingCount: firestoreData?.rating_count ?? 0,
             verifiedIcon: VERIFIED_ICON,
             verified: gameData.creator?.hasVerifiedBadge ?? false,
         });

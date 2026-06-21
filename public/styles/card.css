@@ -35,8 +35,8 @@
 .card-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 6px;
+    justify-content: flex-start;
+    /* gap: 6px; USELESS? */
     flex: 1;
     min-width: 0;
     height: 100%;
@@ -58,7 +58,8 @@
     line-height: 1.5;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
 }
 

@@ -17,6 +17,16 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Invalid placeId or rating' });
     }
 
+    // IP-based duplicate check
+    const ip = req.headers['x-forwarded-for']?.split(',')[0] ?? req.socket.remoteAddress;
+    const voteKey = `votes/${placeId}_${ip.replace(/[.:]/g, '_')}`;
+    const voteRef = db.doc(voteKey);
+    const voteSnap = await voteRef.get();
+
+    if (voteSnap.exists) {
+        return res.status(429).json({ error: 'Already rated' });
+    }
+
     try {
         const docRef = db.collection('games').doc(`game_${placeId}`);
         const doc = await docRef.get();
@@ -24,6 +34,9 @@ export default async function handler(req, res) {
         if (!doc.exists) {
             return res.status(404).json({ error: 'Game not found' });
         }
+
+        // Store vote record
+        await voteRef.set({ ip, placeId, rating, timestamp: new Date().toISOString() });
 
         await docRef.update({
             rating_total: FieldValue.increment(rating),

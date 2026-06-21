@@ -1,5 +1,6 @@
 let currentRating = 0;
 
+
 export function initStars() {
     const holder = document.querySelector('#stars_holder');
     if (!holder) return;
@@ -7,7 +8,6 @@ export function initStars() {
     const stars = holder.querySelectorAll('.star');
     if (!stars.length) return;
 
-    // Clone all stars to remove old listeners
     stars.forEach(star => {
         const clone = star.cloneNode(true);
         star.parentNode.replaceChild(clone, star);
@@ -57,16 +57,58 @@ export function resetRating() {
     });
 }
 
-// Submit wiring — runs once on load
-document.querySelector('#submit_stars')?.addEventListener('click', () => {
+document.querySelector('#submit_stars')?.addEventListener('click', async () => {
     if (!currentRating) {
         console.warn('No rating selected');
         return;
     }
 
-    console.log('Rating submitted:', currentRating);
-    // TODO: send to API with placeId
+    const placeId = document.getElementById('rate_game')?.dataset.placeId;
+    if (!placeId) return;
 
-    document.getElementById('rate_game').style.display = 'none';
-    resetRating();
+    // Check if already rated
+    const storageKey = `rated_${placeId}`;
+    if (localStorage.getItem(storageKey)) {
+        alert('You have already rated this game.');
+        return;
+    }
+
+    const submitBtn = document.querySelector('#submit_stars');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    try {
+        const res = await fetch('/api/rating', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ placeId, rating: currentRating }),
+        });
+
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || res.status);
+        }
+
+        const { avg, count } = await res.json();
+        console.log(`Rating submitted! New avg: ${avg} from ${count} votes`);
+
+        // Mark as rated
+        localStorage.setItem(storageKey, '1');
+
+        submitBtn.textContent = '✅ Rated!';
+        setTimeout(() => {
+            document.getElementById('rate_game').style.display = 'none';
+            resetRating();
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Rating';
+        }, 1500);
+
+    } catch (err) {
+        console.error('Rating failed:', err);
+        submitBtn.textContent = '❌ Failed, try again';
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Rating';
+        }, 3000);
+    }
 });

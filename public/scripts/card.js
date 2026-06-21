@@ -3,7 +3,14 @@ import { initStars, getRating, resetRating } from './starsSubmission.js';
 const STAR_FILLED = './assets/star_filled.svg';
 const STAR_BLANK = './assets/star_blank.svg';
 
-function renderStars(rating, starSize, { max = 5, gap = 4 } = {}) {
+export function formatCount(n) {
+  if (n >= 1_000_000_000) return (n / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B';
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1_000) return (n / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
+  return n.toString();
+}
+
+function renderStars(rating, starSize, ratingCount, { max = 5, gap = 4 } = {}) {
   const stars = Array.from({ length: max }, (_, i) => {
     const fill = Math.min(1, Math.max(0, rating - i));
 
@@ -18,7 +25,7 @@ function renderStars(rating, starSize, { max = 5, gap = 4 } = {}) {
             </div>`;
   }).join('');
 
-  return `<div class="star-rating" style="gap:${gap}px">${stars}<span class="star-label">${rating.toFixed(1)}</span></div>`;
+  return `<div style="display:flex; flex-direction:column; align-items: center;"><div class="star-rating" style="gap:${gap}px">${stars}</div><span class="star-label">${rating.toFixed(1)} (${ratingCount})</span></div>`;
 }
 
 export function createCard({
@@ -28,6 +35,7 @@ export function createCard({
   imageUrl,
   author,
   rating = 0,
+  ratingCount = 0,
   verifiedIcon,
   playCount,
   verified
@@ -39,16 +47,17 @@ export function createCard({
   card.innerHTML = `
         <div class="card-header">
             <img src="${imageUrl}" alt="" class="card-img" draggable="false">
-            ${renderStars(rating, 35)}
+            ${renderStars(rating, 30, formatCount(ratingCount))}
         </div>
         <div class="card-content">
-            <h3 class="card-title"></h3>
+        <div><h3 class="card-title"></h3>
             <div class="author-info">
                 <p class="card-author">
                     <span class="card-author-name"></span>
                     <img src="${verifiedIcon}" class="verified-badge" style="display:${verified ? 'inline-block' : 'none'}; height:15px;" draggable="false" />
                 </p>
-            </div>
+            </div></div>
+            
             <p class="card-description"></p>
         </div>
     `;
