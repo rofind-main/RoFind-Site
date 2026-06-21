@@ -11,12 +11,6 @@ export default async function handler(req, res) {
         : `https://${req.headers.host}`;
     const token = process.env.ADMIN_TOKEN;
 
-    const buttons = [
-        { label: '✅ Approve', url: `${baseUrl}/api/review?placeId=${placeId}&game_name=${gameName}&action=approve&token=${token}` },
-        { label: '❌ Decline', url: `${baseUrl}/api/review?placeId=${placeId}&action=decline&token=${token}` },
-        { label: '🎮 Play', url: `https://www.roblox.com/games/${placeId}` },
-    ];
-
     const payload = {
         embeds: [{
             title: title ?? 'New Submission',
@@ -28,17 +22,31 @@ export default async function handler(req, res) {
         }],
         components: [{
             type: 1,
-            components: buttons.map(btn => ({
-                type: 2,
-                style: 5,
-                label: btn.label,
-                url: btn.url,
-            }))
-        }]
+            components: [
+                {
+                    type: 2,
+                    style: 5,
+                    label: '✅ Approve',
+                    url: `${baseUrl}/api/review?placeId=${placeId}&game_name=${encodeURIComponent(gameName)}&action=approve&token=${token}`,
+                },
+                {
+                    type: 2,
+                    style: 5,
+                    label: '❌ Decline',
+                    url: `${baseUrl}/api/review?placeId=${placeId}&action=decline&token=${token}`,
+                },
+                {
+                    type: 2,
+                    style: 5,
+                    label: '🎮 Play',
+                    url: `https://www.roblox.com/games/${placeId}`,
+                },
+            ],
+        }],
     };
 
     try {
-        const discordRes = await fetch(webhookUrl + '?with_components=true', {
+        const discordRes = await fetch(`${webhookUrl}?with_components=true`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
@@ -46,11 +54,10 @@ export default async function handler(req, res) {
 
         if (!discordRes.ok) {
             const err = await discordRes.text();
-            console.error('Discord response:', err);
-            throw new Error(`Discord error: ${discordRes.status} - ${err}`);
+            console.error('Discord response:', discordRes.status, err);
+            return res.status(500).json({ error: `Discord error: ${discordRes.status} - ${err}` });
         }
 
-        console.log('Discord success:', discordRes.status);
         res.status(200).json({ ok: true });
     } catch (err) {
         console.error('Handler error:', err.message);

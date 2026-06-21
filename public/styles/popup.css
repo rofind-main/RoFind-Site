@@ -27,6 +27,7 @@
     }
 
     .popup-modal {
+        position: relative;
         background-color: var(--color-card);
         border: 1px solid var(--border-color);
         border-radius: 8px;
@@ -165,7 +166,21 @@
         border-radius: 8px;
         border: 1px solid #2e2e4a;
         display: grid;
-        grid-template-columns: 160px 1fr;
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        color: var(--color-text);
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .rating_container {
+        background-color: var(--color-card);
+        padding: var(--popup-padding);
+        width: min(700px, 40vw);
+        border-radius: 8px;
+        border: 1px solid #2e2e4a;
+        display: grid;
+        grid-template-rows: auto 1fr;
         gap: 20px;
         color: var(--color-text);
         position: relative;
@@ -205,6 +220,9 @@
 
     #star_rating {
         width: fit-content;
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
     }
 
     .view_container .normal_button {
@@ -215,20 +233,54 @@
 
     .view_actions {
         display: grid;
-        grid-template-columns: 50px 1fr;
+        grid-template-columns: 50px 80px 1fr;
         gap: 8px;
         padding-top: 15px;
         border-top: 1px solid var(--border-color);
         margin-top: 2px;
     }
 
-    #stars_holder {
-        display: flex;
+    .stars_submit {
+        height: 40px;
+        display: grid;
+        grid-template-columns: 100px auto;
+        gap: 10px
     }
 
-    #star {
-        height: 50px;
+    #stars_holder {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .star {
         width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+    }
+
+    .star:hover {
+        transform: scale(1.2);
+    }
+
+    .star img {
+        width: 100%;
+        height: 100%;
+        filter: brightness(0) invert(0.4);
+        transition: filter 0.15s ease;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    .star.hovered img,
+    .star.selected img {
+        filter: brightness(0) saturate(100%) invert(85%) sepia(50%) saturate(500%) hue-rotate(5deg) brightness(1.05);
     }
 
     @media (max-width: 600px) {
@@ -255,6 +307,36 @@
         #game_thumbnail {
             width: 100%;
             height: auto;
+        }
+    }
+
+    /* Skelly */
+    .popup-modal.is-loading .submission-preview,
+    .popup-modal.is-loading .submission-field,
+    .popup-modal.is-loading .submission-note,
+    .popup-modal.is-loading #game_submission_submit {
+        pointer-events: none;
+        border-radius: var(--radius);
+        background: linear-gradient(90deg, var(--border-color) 25%, color-mix(in srgb, var(--border-color) 50%, transparent) 50%, var(--border-color) 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.4s infinite;
+        color: transparent;
+        border-color: transparent;
+    }
+
+    .popup-modal.is-loading .submission-preview *,
+    .popup-modal.is-loading .submission-field *,
+    .popup-modal.is-loading .submission-note * {
+        visibility: hidden;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: 200% 0;
+        }
+
+        100% {
+            background-position: -200% 0;
         }
     }
 }

@@ -44,7 +44,6 @@
   <!-- Pop up -> SUBMISSION -->
   <div class="popup" style="display:none;">
     <div class="popup-modal">
-
       <div class="popup-header">
         <span>Game Submission</span>
       </div>
@@ -71,19 +70,11 @@
           </div>
         </div>
 
-        <!-- <div class="submission-field">
-          <label>Account</label>
-          <button id="sign_in_roblox" class="btn submission_button submissions_user">
-            Sign in with Roblox
-          </button>
-        </div> -->
-
         <div class="submission-actions">
           <button id="game_submission_cancel" class="btn nofill_button">Cancel</button>
           <button id="game_submission_submit" class="btn game_submission">Submit Game</button>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -125,11 +116,11 @@
             <div></div>
 
             <div id="star_rating">
-              <span class="star" data-value="1">★</span>
-              <span class="star" data-value="2">★</span>
-              <span class="star" data-value="3">★</span>
-              <span class="star" data-value="4">★</span>
-              <span class="star" data-value="5">★</span>
+              <span class="star_display">★</span>
+              <span class="star_display">★</span>
+              <span class="star_display">★</span>
+              <span class="star_display">★</span>
+              <span class="star_display">★</span>
               <span id="rating_value">(0)</span>
             </div>
           </div>
@@ -141,10 +132,10 @@
               <image src="./assets/bookmark.svg" style="filter: brightness(0) invert(1)"></image>
             </a>
 
-            <!-- <a id="rate_btn" class="btn nofill_button"
+            <a id="rate_btn" class="btn nofill_button"
               style="display:flex;align-items:center; gap:3px; justify-content: center;">
-              <p>Rate</p>
-            </a> -->
+              <p style="margin: 0; padding: 0;">Rate</p>
+            </a>
 
             <a id="play_btn" class="btn game_submission"
               style="display:flex;align-items:center; gap:3px; justify-content: center;">
@@ -160,30 +151,26 @@
 
   <!-- Rate popup -->
 
-  <div class="popup" id="rate_game" style="display:none">
+  <div class="popup" id="rate_game" style="display:grid">
     <div id="popup_holder">
 
-      <div id="closebuttonholder">
-        <div></div>
-        <button type="button" class="btn normal_button" style="padding: 8px 15px;"
-          onclick="document.getElementById('rate_game').style.display='none'">Close</button>
-      </div>
-
-
-
-      <div class="view_container">
+      <div class="rating_container">
         <!-- STars -->
         <div id="stars_holder">
-          <a id="star"><img src="./assets/star_blank.svg" id="star_1" data-value="1"></a>
-          <a id="star"><img src="./assets/star_blank.svg" id="star_2" data-value="2"></a>
-          <a id="star"><img src="./assets/star_blank.svg" id="star_3" data-value="3"></a>
-          <a id="star"><img src="./assets/star_blank.svg" id="star_4" data-value="4"></a>
-          <a id="star"><img src="./assets/star_blank.svg" id="star_5" data-value="5"></a>
+          <a class="star"><img src="./assets/star_blank.svg" id="star_1" data-value="1"></a>
+          <a class="star"><img src="./assets/star_blank.svg" id="star_2" data-value="2"></a>
+          <a class="star"><img src="./assets/star_blank.svg" id="star_3" data-value="3"></a>
+          <a class="star"><img src="./assets/star_blank.svg" id="star_4" data-value="4"></a>
+          <a class="star"><img src="./assets/star_blank.svg" id="star_5" data-value="5"></a>
         </div>
 
         <!-- Submit -->
-        <div>
-          <button class="btn game_submission" id="submit_stars">Submit</button>
+        <div class="stars_submit">
+          <button type="button" class="btn nofill_button" style="padding: 8px 15px;"
+            onclick="document.getElementById('rate_game').style.display='none'">Close</button>
+
+          <button class="btn game_submission" id="submit_stars" style="height: 100%; padding: 0px 20px;">Submit
+            Rating</button>
         </div>
 
       </div>
