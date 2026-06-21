@@ -27,12 +27,15 @@ export default async function handler(req, res) {
                 game_name,
                 placeId,
                 user_rating: 0,
+                rating_avg: 0,
+                rating_count: 0,
+                rating_total: 0,
             });
             return res.status(200).send(`
                 <html><body style="font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#1a1a2e;">
                     <div style="text-align:center;color:white;">
                         <h1>✅ Approved</h1>
-                        <p style="color:#aaa;">Game <b>${placeId}</b> has been added.</p>
+                        <p style="color:#aaa;">Game <b>${game_name}</b> <i>${placeId}</i> has been added.</p>
                         <p style="color:#555;font-size:12px;">You can close this tab.</p>
                     </div>
                 </body></html>
@@ -43,7 +46,7 @@ export default async function handler(req, res) {
                 <html><body style="font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#1a1a2e;">
                     <div style="text-align:center;color:white;">
                         <h1>❌ Declined</h1>
-                        <p style="color:#aaa;">Game <b>${placeId}</b> has been declined.</p>
+                        <p style="color:#aaa;">Game <b>${game_name}</b> <i>${placeId}</i> has been declined.</p>
                         <p style="color:#555;font-size:12px;">You can close this tab.</p>
                     </div>
                 </body></html>
