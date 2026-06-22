@@ -96,7 +96,7 @@ document.querySelector('#submit_stars')?.addEventListener('click', async () => {
         // Mark as rated
         localStorage.setItem(storageKey, '1');
 
-        submitBtn.textContent = '✅ Rated!';
+        submitBtn.textContent = 'Rated!';
         setTimeout(() => {
             document.getElementById('rate_game').style.display = 'none';
             document.getElementById('already_rated').style.display = 'none';
@@ -107,7 +107,7 @@ document.querySelector('#submit_stars')?.addEventListener('click', async () => {
 
     } catch (err) {
         console.error('Rating failed:', err);
-        submitBtn.textContent = '❌ Failed, try again';
+        submitBtn.textContent = 'Failed, try again';
         setTimeout(() => {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Submit Rating';

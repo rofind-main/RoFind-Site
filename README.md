@@ -49,17 +49,17 @@ The `roblox://` protocol has been around for long too! (_found it by accident wh
 - Desktop (Windows) _Soon_
 - Browsers listed below
 
-| Tested Browsers  | Support
-|--- | --- |
-| Chrome | ✅ |
-| Brave  | ✅ |
-| Firefox| ✅ |
-| Opera | ✅ |
-| Safari | ❔ |
+| Tested Browsers | Support |
+| --------------- | ------- |
+| Chrome          | ✅       |
+| Brave           | ✅       |
+| Firefox         | ✅       |
+| Opera           | ✅       |
+| Safari          | ❔       |
 
 ## Have questions?
 
-Join the [Discord](https://discord.gg/hJxqUbjtaX) server! _Invite Code: (hJxqUbjtaX)_
+Join the [Discord](https://discord.gg/CryHUshKT7) server! _Invite Code: (CryHUshKT7)_
 
 ## License
 

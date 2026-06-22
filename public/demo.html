@@ -39,7 +39,8 @@
 
     <div></div>
     <input class="btn game_submission" type="button" value="Submit Game" style="height: 100%;" />
-    <input class="btn normal_button" type="button" value="User" disabled
+    <input class="btn normal_button" type="button" value="User"
+      onclick="document.getElementById('user_notice').style.display = 'grid'"
       style="padding-left: 30px; padding-right: 30px; height: 100%;" />
   </nav>
 
@@ -165,6 +166,23 @@
 
       <div class="view_container" style="width: min(400px, 90vw)">
         <p style="color: white">You have already rated this game!</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Custom popup -> User -->
+  <div class="popup" id="user_notice" style="z-index: 998; ;display:none">
+    <div class="popup_holder">
+
+      <div id="closebuttonholder">
+        <div></div>
+        <button type="button" class="btn normal_button" style="padding: 8px 15px;"
+          onclick="document.getElementById('user_notice').style.display='none'">Close</button>
+      </div>
+
+      <div class="view_container" style="width: min(400px, 90vw)">
+        <p style="color: white">We are currently finding ways to implement this feature. Stay tuned!</p>
       </div>
 
     </div>
