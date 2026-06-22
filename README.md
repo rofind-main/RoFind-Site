@@ -9,6 +9,7 @@
 Inspired by Better Discovery - Mariage Sorcière on Roblox.
 
 ## Technologies used
+
 1. Vercel (Hosting)
 2. Firebase (Database)
 3. Discord Webhook (Moderation of submissions)
@@ -23,9 +24,10 @@ Playing games will use the protocol and pass an argument or a link like `roblox:
 
 The `roblox://` protocol has been around for long too! (_found it by accident when i was a kid_)
 
-## Heads Up!
+## Heads Up
 
 > Roblox Launcher should be installed and an account logged in to play!
+> User Data (Login, Favorite, Comment, and much more) is in development. Thank you for understanding!
 
 ## Planned Features
 
@@ -51,11 +53,11 @@ The `roblox://` protocol has been around for long too! (_found it by accident wh
 
 | Tested Browsers | Support |
 | --------------- | ------- |
-| Chrome          | ✅       |
-| Brave           | ✅       |
-| Firefox         | ✅       |
-| Opera           | ✅       |
-| Safari          | ❔       |
+| Chrome          | ✅      |
+| Brave           | ✅      |
+| Firefox         | ✅      |
+| Opera           | ✅      |
+| Safari          | ❔      |
 
 ## Have questions?
 

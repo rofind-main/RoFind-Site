@@ -80,7 +80,6 @@ export function createCard({
 
     // })
 
-
     // Fill read-only stars in viewer
     const starSpans = viewer.querySelectorAll('#star_rating .star_display');
     starSpans.forEach((star, i) => {
