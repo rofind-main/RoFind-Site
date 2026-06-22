@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./images/Colored_White.png">
+  <title>RoFind - User</title>
+
+  <script src="./scripts/loader.js" defer></script>
+
+  <link rel="stylesheet" href="./styles/global.css">
+  <link rel="stylesheet" href="./styles/base.css">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/popup.css">
+  <link rel="stylesheet" href="./styles/input.css">
+  <link rel="stylesheet" href="./styles/card.css">
+
+  <!-- Temporary icons bruh -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@1.17.0/dist/umd/lucide.min.js"></script>
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Nav -->
+  <nav>
+    <a href="./index.html" style="text-decoration: none;">
+      <span style="display: flex; flex-direction: row; gap: 10px">
+        <h1 class="appname" style="margin: 0; ">RoFind</h1>
+        <h1 class="g" style="margin: 0; text-align: end;">WEB</h1>
+      </span>
+    </a>
+    <div></div>
+    <!-- <input class="btn game_submission" type="button" value="Submit Game" style="height: 100%;" /> -->
+    <input class="btn normal_button" type="button" value="User"
+      onclick="document.getElementById('user_notice').style.display = 'grid'"
+      style="padding-left: 30px; padding-right: 30px; height: 100%;" />
+  </nav>
+
+  <!-- Custom popup -> User -->
+  <div class="popup" id="user_notice" style="z-index: 998; ;display:none">
+    <div class="popup_holder">
+
+      <div id="closebuttonholder">
+        <div></div>
+        <button type="button" class="btn normal_button" style="padding: 8px 15px;"
+          onclick="document.getElementById('user_notice').style.display='none'">Close</button>
+      </div>
+
+      <div class="view_container" style="width: min(400px, 90vw)">
+        <div>
+          <pre>Feature: User Data</pre>
+          <p style="color: white">We are currently finding ways to implement this feature. Stay tuned!</p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ---------------------------DIVISIONNNNNN---------------------------------- -->
+
+  <!-- <div class="note">
+    <div class="note-body notice">
+      <p>
+        Playing directly requires the Roblox Player installed and an active account.
+        <a href="https://www.roblox.com/download/client" target="_blank" rel="noopener noreferrer">
+          Download ↗
+        </a>
+      </p>
+    </div>
+  </div> -->
+
+  <!-- Container -->
+  <div id="card-container">
+  </div>
+
+  <footer>
+    <p><strong>RoFind</strong> is a community-driven alternative to the native Roblox discovery page, helping users
+      find games through shared support and recommendations.</p>
+    <br>
+    <p>A project by KERNL (<a href="https://www.roblox.com/users/522136977/profile"
+        style="color:grey; text-decoration: none; border-bottom: 2px grey dashed;" target="_blank">@4Hoursleft</a>)
+    </p>
+    <hr>
+    <p><strong>ROBLOX®</strong> is a registered trademark of Roblox Corporation.</p>
+    <p>All rights and trademarks are the property of their respective owners.</p>
+    <hr>
+    <a href="./privacy-policy.html" style="color: white">Privacy Policy</a>
+    <a href="./terms-of-service.html" style="color: white">Terms of Service</a>
+  </footer>
+
+
+  <script type="module" defer>
+    console.log("User Page")
+  </script>
+
+  <!-- Fall back -->
+  <noscript>
+    <style>
+      #noscript_header,
+      p {
+        color: white;
+        margin: 0
+      }
+
+      pre {
+        margin: 0;
+        border-radius: 5px;
+        background-color: grey;
+        border: 2px solid white;
+        padding: 5px;
+        color: black
+      }
+
+      i {
+        color: grey
+      }
+
+      i>a {
+        color: white
+      }
+
+      footer {
+        display: none;
+      }
+    </style>
+
+    <div class="popup">
+      <div class="popup-modal">
+
+        <div class="popup-body">
+          <b id="noscript_header">NoScript detected</b>
+          <p>Services that needs JavaScript:</p>
+          <pre>Firebase (Firestore), gstatic, and jsdelivr</pre>
+          <p>JavaScript should be enabled for this page to work!</p>
+          <i>If you have NoScript enabled, please disable it. Guide: <a href="https://noscript.net/usage/"
+              target="_blank">NoScript Guide</a></i>
+        </div>
+
+      </div>
+    </div>
+  </noscript>
+</body>
+
+</html>

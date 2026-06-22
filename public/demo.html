@@ -133,7 +133,9 @@
           <!-- Action buttons yes -->
           <!-- Play Button -->
           <div class="view_actions">
-            <a class="btn nofill_button" style="display:flex;align-items:center; gap:3px; justify-content: center;">
+            <a id="favorite_btn" class="btn nofill_button"
+              onclick="document.getElementById('user_notice').style.display = 'grid'"
+              style="display:flex;align-items:center; gap:3px; justify-content: center;">
               <image src="./assets/bookmark.svg" style="filter: brightness(0) invert(1)"></image>
             </a>
 
@@ -182,7 +184,11 @@
       </div>
 
       <div class="view_container" style="width: min(400px, 90vw)">
-        <p style="color: white">We are currently finding ways to implement this feature. Stay tuned!</p>
+        <div>
+          <pre>Feature: User Data</pre>
+          <p style="color: white">We are currently finding ways to implement this feature. Stay tuned!</p>
+
+        </div>
       </div>
 
     </div>

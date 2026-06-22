@@ -75,6 +75,12 @@ export function createCard({
     viewer.querySelector('#play_count_value').textContent = playCount;
     viewer.querySelector('#rating_value').textContent = `(${rating})`;
 
+    // Favoriete button nvm
+    // viewer.querySelector('#favorite_btn').addEventListener('click', (e) => {
+
+    // })
+
+
     // Fill read-only stars in viewer
     const starSpans = viewer.querySelectorAll('#star_rating .star_display');
     starSpans.forEach((star, i) => {

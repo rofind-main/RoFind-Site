@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>RoFind — User</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/popup.css">
+  <link rel="stylesheet" href="../styles/inputs.css">
+  <link rel="stylesheet" href="../styles/card.css">
+  <link rel="stylesheet" href="../styles/user.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <nav>
+    <h1 class="appname">RoFind</h1>
+    <h1 class="g">IN DEVELOPMENT</h1>
+    <div></div>
+    <input class="btn game_submission" type="button" value="Submit Game" />
+    <input class="btn normal_button" type="button" value="User" onclick="window.location.href='./user.html'"
+      style="padding-left: 30px; padding-right: 30px;" />
+    <!-- <a class="user" type="button" href="./user.html">User</a> -->
+  </nav>
+
+  <div id="user-container">
+    <div class="top-2">
+      <a href="./index.html">
+        <button class="btn nofill_button" style="padding:5px 20px">Back to discovery</button>
+      </a>
+    </div>
+
+    <!-- STill working on this iashfue -->
+    <div id="user-profile">
+      <img id="user-avatar" src="https://placehold.co/100?text=..." alt="Avatar" />
+      <div id="user-info">
+        <h2 id="user-display-name">—</h2>
+        <p id="user-username">@—</p>
+        <input type="button" id="sign-in-btn" class="submission_button" value="Sign In" />
+        <input type="button" id="sign-out-btn" class="submission_button" value="Sign Out" />
+      </div>
+    </div>
+
+    <div id="user-profile" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <h1>Rating Collection</h1>
+      <p>Soon...</p>
+    </div>
+
+    <div id="user-profile" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <h1>Comments</h1>
+      <p>Soon...</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>
+      RoFind is a community-driven alternative to the native Roblox
+      discovery page, helping users find games through shared support
+      and recommendations.
+    </p>
+    <p>
+      <strong>ROBLOX®</strong> is a registered trademark of Roblox
+      Corporation. All rights and trademarks are the property of their
+      respective owners.
+    </p>
+  </footer>
+
+  <script type="module">
+    const userIdRaw = localStorage.getItem('roblox_user_id');
+    const userId = Number(userIdRaw);
+
+    const nameEl = document.getElementById('user-display-name');
+    const usernameEl = document.getElementById('user-username');
+    const avatarEl = document.getElementById('user-avatar');
+
+    if (!userIdRaw || !Number.isFinite(userId)) {
+      nameEl.textContent = 'Not signed in';
+      usernameEl.textContent = '';
+    } else {
+      try {
+        const [userRes, avatarRes] = await Promise.all([
+          fetch(`https://users.roblox.com/v1/users/${userId}`),
+          fetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png`)
+        ]);
+
+        if (!userRes.ok) {
+          throw new Error(`User API failed: ${userRes.status}`);
+        }
+
+        if (!avatarRes.ok) {
+          throw new Error(`Avatar API failed: ${avatarRes.status}`);
+        }
+
+        const userData = await userRes.json();
+        const avatarData = await avatarRes.json();
+
+        const avatarUrl = avatarData?.data?.[0]?.imageUrl;
+
+        nameEl.textContent = userData.displayName || 'Unknown';
+        usernameEl.textContent = userData.name ? `@${userData.name}` : '';
+
+        if (avatarUrl) {
+          avatarEl.src = avatarUrl;
+        }
+      } catch (err) {
+        console.error('Failed to load user data:', err);
+
+        nameEl.textContent = 'Error loading profile';
+        usernameEl.textContent = '';
+      }
+    }
+
+    document.getElementById('sign-in-btn').addEventListener('click', async () => {
+      try {
+        const session = await window.oauthAPI.loginRoblox();
+
+        if (!session?.userId || !session?.accessToken) {
+          throw new Error('Invalid OAuth session returned');
+        }
+
+        console.log(session);
+
+        localStorage.setItem('roblox_access_token', session.accessToken);
+        localStorage.setItem('roblox_user_id', String(session.userId));
+        localStorage.setItem('roblox_name', session.name || '');
+
+        location.reload();
+      } catch (e) {
+        console.error('OAuth failed:', e);
+      }
+    });
+  </script>
+</body>
+
+</html>
