@@ -1,0 +1,54 @@
+* {
+    color: white
+}
+
+#user-username {
+    color: var(--color-muted)
+}
+
+#names>* {
+    margin: 0;
+}
+
+#main-holder {
+    background-color: greenyellow;
+    /* margin: 0px 50px; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px
+}
+
+#main-holder>* {
+    width: min(1000px, 90vw);
+}
+
+.container {
+    background-color: var(--color-card);
+    border-radius: 10px;
+}
+
+.container_body {
+    margin: 20px;
+}
+
+#user-info {
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+#user-avatar {
+    border-radius: 500px;
+    border: 5px solid var(--border-color)
+}
+
+#sign-out-btn {
+    width: 150px;
+}
+
+#user-profile {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px
+}

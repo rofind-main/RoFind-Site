@@ -45,7 +45,7 @@
   </nav>
 
   <!-- Pop up -> SUBMISSION -->
-  <div class="popup" style="display:none;">
+  <div class="popup" style="z-index: 996; display:none;">
     <div class="popup-modal">
       <div class="popup-header">
         <span>Game Submission</span>
@@ -187,6 +187,25 @@
         <div>
           <pre>Feature: User Data</pre>
           <p style="color: white">We are currently finding ways to implement this feature. Stay tuned!</p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="popup" id="submission_notice" style="z-index: 998; ;display:none">
+    <div class="popup_holder">
+
+      <div id="closebuttonholder">
+        <div></div>
+        <button type="button" class="btn normal_button" style="padding: 8px 15px;"
+          onclick="document.getElementById('submission_notice').style.display='none'">Close</button>
+      </div>
+
+      <div class="view_container" style="width: min(400px, 90vw)">
+        <div>
+          <p style="color: white">Submission succesful. Thank you for making game discovery much better!</p>
 
         </div>
       </div>

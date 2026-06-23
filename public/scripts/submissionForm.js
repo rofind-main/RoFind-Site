@@ -9,6 +9,8 @@ const checkPlaceBtn = document.querySelector("#checkplace");
 const verifyUserBtn = document.querySelector("#sign_in_roblox");
 const submitBtn = document.querySelector("#game_submission_submit");
 
+const submissionSuccessNote = document.querySelector("#submission_notice");
+
 const ui = {
     iconPreview: document.querySelector("#submissions_game_preview"),
     gameName: document.querySelector("#submissions_game_name"),
@@ -19,10 +21,12 @@ const ui = {
 function setSubmitState(state) {
     if (state === 'loading') {
         modal.classList.add('is-loading');
+        cancelBtn.disabled = true;
         submitBtn.disabled = true;
         cancelBtn.disabled = true;
     } else {
         modal.classList.remove('is-loading');
+        cancelBtn.disabled = false;
         submitBtn.disabled = false;
         cancelBtn.disabled = false;
     }
@@ -32,6 +36,9 @@ function setSubmitState(state) {
     } else if (state === 'success') {
         submitBtn.disabled = true;
         submitBtn.textContent = '✅ Submitted!';
+        // Note so no more spamming thanks to @arma
+        submissionSuccessNote.style.display = "grid"
+
     } else if (state === 'error') {
         submitBtn.disabled = false;
         submitBtn.textContent = '❌ Failed, try again';
@@ -112,6 +119,8 @@ async function submitSubmission() {
 
     setSubmitState('loading');
 
+    closeSubmissionForm
+
     try {
         await DiscordSubmissionHook.sendToDiscord({
             title: 'New Game Submission',
@@ -130,9 +139,9 @@ async function submitSubmission() {
         setSubmitState('success');
         console.log('Submitted successfully');
 
-        setTimeout(() => {
-            closeSubmissionForm();
-        }, 1500);
+        // setTimeout(() => {
+        closeSubmissionForm();
+        // }, 1500);
     } catch (err) {
         console.error('Submission failed:', err);
         setSubmitState('error');
