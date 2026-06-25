@@ -51,7 +51,7 @@
         <div id="user-info">
           <div id="names">
             <h2 id="user-display-name">Display Name</h2>
-            <p id="user-username">@Username</p>
+            <p id="user-username" class="secondary_text">@Username</p>
           </div>
 
           <!-- <input type="button" id="sign-in-btn" class="submission_button" value="Sign In" /> -->
@@ -64,14 +64,14 @@
     <div class="container" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div class="container_body" id="rating_collection_body">
         <h1>Rating Collection</h1>
-        <p>Soon...</p>
+        <p class="secondary_text">Soon...</p>
       </div>
     </div>
 
     <div class="container" style="display: flex; flex-direction: column; align-items: flex-start;">
       <div class="container_body" id="comments_body">
         <h1>Comments</h1>
-        <p>Soon...</p>
+        <p class="secondary_text">Soon...</p>
       </div>
     </div>
 
@@ -91,6 +91,13 @@
   </footer>
 
   <script type="module">
+    import { getLoggedIn, setLoggedIn } from './scripts/accountHandler.js';
+
+    console.log(getLoggedIn())
+
+    setLoggedIn("ADASDSA")
+
+    console.log(getLoggedIn())
 
   </script>
 </body>

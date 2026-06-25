@@ -1,8 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 import { getFirestore, collection, updateDoc, getDocs, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-import { firebaseConfig } from './config/firebaseConfig.js';
 
+const res = await fetch('/api/config');
+if (!res.ok) throw new Error('Failed to load config');
+const firebaseConfig = await res.json();
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
 
 const toDocId = (placeId) => `game_${placeId}`;

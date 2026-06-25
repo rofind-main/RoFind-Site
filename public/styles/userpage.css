@@ -2,7 +2,7 @@
     color: white
 }
 
-#user-username {
+.secondary_text {
     color: var(--color-muted)
 }
 
@@ -11,8 +11,7 @@
 }
 
 #main-holder {
-    background-color: greenyellow;
-    /* margin: 0px 50px; */
+    /* background-color: greenyellow; */
     display: flex;
     flex-direction: column;
     gap: 20px;

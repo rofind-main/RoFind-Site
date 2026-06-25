@@ -1,29 +1,51 @@
-const { BrowserWindow } = require('electron');
+// import {
+//     generateCodeVerifier,
+//     generateCodeChallenge,
+//     generateState
+// } from './pkce';
 
-const {
-    generateCodeVerifier,
-    generateCodeChallenge,
-    generateState
-} = require('./pkce');
-
-const CLIENT_ID = process.env.OAUTH_CLIENT_ID;
+const CLIENT_ID = '8424212320330349269';
 const REDIRECT_URI = 'https://ro-find.vercel.app/redirect.html';
 
 const AUTH_URL = 'https://apis.roblox.com/oauth/v1/authorize';
 const TOKEN_URL = 'https://apis.roblox.com/oauth/v1/token';
 const USERINFO_URL = 'https://apis.roblox.com/oauth/v1/userinfo';
 
-class RobloxOAuth {
-    constructor() {
-        this.win = null;
-        this.pending = null;
-    }
+// PKCE
+function randomBytes(len) {
+    return crypto.getRandomValues(new Uint8Array(len));
+}
 
-    start() {
-        if (this.pending) return this.pending;
+function base64url(buf) {
+    return btoa(String.fromCharCode(...buf))
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+}
+
+function generateCodeVerifier() {
+    return base64url(randomBytes(32));
+}
+
+async function generateCodeChallenge(verifier) {
+    const encoded = new TextEncoder().encode(verifier);
+    const digest = await crypto.subtle.digest('SHA-256', encoded);
+    return base64url(new Uint8Array(digest));
+}
+
+function generateState() {
+    return base64url(randomBytes(16));
+}
+
+
+const RobloxOAuth = {
+    _pending: null,
+
+    async start() {
+        if (this._pending) return this._pending;
 
         const verifier = generateCodeVerifier();
-        const challenge = generateCodeChallenge(verifier);
+        const challenge = await generateCodeChallenge(verifier);
         const state = generateState();
 
         const authUrl =
@@ -35,125 +57,78 @@ class RobloxOAuth {
                 scope: 'openid profile',
                 code_challenge: challenge,
                 code_challenge_method: 'S256',
-                state
-            }).toString();
+                state,
+            });
 
-        this.pending = new Promise((resolve, reject) => {
-            this.open(authUrl, verifier, state, resolve, reject);
+        this._pending = this._openPopup(authUrl, verifier, state).finally(() => {
+            this._pending = null;
         });
 
-        return this.pending;
-    }
+        return this._pending;
+    },
 
-    open(authUrl, verifier, expectedState, resolve, reject) {
-        this.cleanup();
+    _openPopup(authUrl, verifier, expectedState) {
+        return new Promise((resolve, reject) => {
+            const width = 520;
+            const height = 720;
+            const left = Math.max(0, (screen.width - width) / 2);
+            const top = Math.max(0, (screen.height - height) / 2);
 
-        this.win = new BrowserWindow({
-            width: 520,
-            height: 720,
-            show: true,
-            webPreferences: {
-                nodeIntegration: false,
-                contextIsolation: true,
-                sandbox: true
+            const popup = window.open(authUrl, '_blank');
+
+            if (!popup) {
+                reject(new Error('Failed to open a new tab!'));
+                return;
             }
-        });
 
-        const handleUrl = async (url) => {
-            try {
-                if (!url) return;
+            const onMessage = async (event) => {
+                if (event.origin !== 'https://ro-find.vercel.app' || event.origin !== 'https://localhost:3000') return;
+                if (!event.data?.robloxOAuth) return;
 
-                const u = new URL(url);
+                cleanup();
 
-                const code =
-                    u.searchParams.get('code') ||
-                    new URLSearchParams((u.hash || '').replace('#', '')).get('code');
+                const { code, state, error } = event.data.robloxOAuth;
 
-                const state =
-                    u.searchParams.get('state') ||
-                    new URLSearchParams((u.hash || '').replace('#', '')).get('state');
+                if (error) { reject(new Error(error)); return; }
+                if (state !== expectedState) { reject(new Error('Invalid OAuth state')); return; }
+                if (!code) { reject(new Error('No code returned')); return; }
 
-                if (!code) return;
-
-                if (state !== expectedState) {
-                    this.cleanup();
-                    reject(new Error('Invalid OAuth state'));
-                    return;
+                try {
+                    const session = await this._exchange(code, verifier);
+                    resolve(session);
+                } catch (err) {
+                    reject(err);
                 }
+            };
 
-                const session = await this.exchange(code, verifier);
+            const pollClosed = setInterval(() => {
+                if (popup.closed) {
+                    cleanup();
+                    reject(new Error('OAuth popup closed'));
+                }
+            }, 500);
 
-                this.cleanup();
-                resolve(session);
-            } catch (err) {
-                this.cleanup();
-                reject(err);
-            }
-        };
+            const cleanup = () => {
+                window.removeEventListener('message', onMessage);
+                clearInterval(pollClosed);
+                if (!popup.closed) popup.close();
+            };
 
-        this.win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
-
-        this.win.webContents.on('will-redirect', (_, url) => handleUrl(url));
-        this.win.webContents.on('did-navigate', (_, url) => handleUrl(url));
-
-        this.win.on('closed', () => {
-            this.cleanup();
-            reject(new Error('OAuth window closed'));
+            window.addEventListener('message', onMessage);
         });
+    },
 
-        this.win.loadURL(authUrl);
-    }
-
-    async exchange(code, verifier) {
-        const body = new URLSearchParams({
-            grant_type: 'authorization_code',
-            client_id: CLIENT_ID,
-            code,
-            redirect_uri: REDIRECT_URI,
-            code_verifier: verifier
-        });
-
-        const tokenRes = await fetch(TOKEN_URL, {
+    async _exchange(code, verifier) {
+        const res = await fetch('/api/token', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code, verifier }),
         });
 
-        if (!tokenRes.ok) {
-            throw new Error(await tokenRes.text());
-        }
+        if (!res.ok) throw new Error(await res.text());
 
-        const token = await tokenRes.json();
+        return res.json(); // { accessToken, refreshToken, userId, name }
+    },
+};
 
-        const userRes = await fetch(USERINFO_URL, {
-            headers: {
-                Authorization: `Bearer ${token.access_token}`
-            }
-        });
-
-        if (!userRes.ok) {
-            throw new Error(await userRes.text());
-        }
-
-        const user = await userRes.json();
-
-        return {
-            accessToken: token.access_token,
-            refreshToken: token.refresh_token,
-            userId: user.sub,
-            name: user.name
-        };
-    }
-
-    cleanup() {
-        if (this.win) {
-            this.win.close();
-            this.win = null;
-        }
-        this.pending = null;
-    }
-}
-
-module.exports = new RobloxOAuth();
+export default RobloxOAuth;

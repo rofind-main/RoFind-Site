@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./styles/popup.css">
   <link rel="stylesheet" href="./styles/input.css">
   <link rel="stylesheet" href="./styles/card.css">
+  <link rel="stylesheet" href="./styles/userpage.css">
 
   <!-- Temporary icons bruh -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@1.17.0/dist/umd/lucide.min.js"></script>
@@ -74,8 +75,54 @@
     </div>
   </div> -->
 
-  <!-- Container -->
-  <div id="card-container">
+  <div id="main-holder">
+
+    <div class="note">
+      <div class="note-body notice">
+        <p>
+          You are not supposed to be here! 🫨
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div id="back">
+      <a href="./demo.html">
+        <button class="btn nofill_button" style="padding:5px 20px">Back to discovery</button>
+      </a>
+    </div>
+
+    <!-- STill working on this iashfue -->
+    <div class="container">
+      <div class="container_body" id="user-profile">
+        <img id="user-avatar" src="https://placehold.co/100?text=..." alt="Avatar" />
+        <div id="user-info">
+          <div id="names">
+            <h2 id="user-display-name">Display Name</h2>
+            <p id="user-username" class="secondary_text">@Username</p>
+          </div>
+
+          <!-- <input type="button" id="sign-in-btn" class="submission_button" value="Sign In" /> -->
+          <input type="button" id="sign-out-btn" class="btn nofill_button" value="Sign Out" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div class="container_body" id="rating_collection_body">
+        <h1>Rating Collection</h1>
+        <p class="secondary_text">Soon...</p>
+      </div>
+    </div>
+
+    <div class="container" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div class="container_body" id="comments_body">
+        <h1>Comments</h1>
+        <p class="secondary_text">Soon...</p>
+      </div>
+    </div>
+
   </div>
 
   <footer>
@@ -95,7 +142,8 @@
 
 
   <script type="module" defer>
-    console.log("User Page")
+    import RobloxOAuth from './scripts/oauth/robloxOAuth.js'
+    const session = await RobloxOAuth.start()
   </script>
 
   <!-- Fall back -->

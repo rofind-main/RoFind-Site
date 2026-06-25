@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-function base64url(buffer) {
+export function base64url(buffer) {
     return buffer
         .toString('base64')
         .replace(/\+/g, '-')
@@ -8,15 +8,15 @@ function base64url(buffer) {
         .replace(/=+$/, '');
 }
 
-function generateCodeVerifier() {
+export function generateCodeVerifier() {
     return base64url(crypto.randomBytes(32));
 }
 
-function generateCodeChallenge(verifier) {
+export function generateCodeChallenge(verifier) {
     return base64url(crypto.createHash('sha256').update(verifier).digest());
 }
 
-function generateState() {
+export function generateState() {
     return crypto.randomUUID();
 }
 
