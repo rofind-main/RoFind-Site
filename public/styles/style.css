@@ -199,3 +199,23 @@ footer p a {
     font-size: 16px;
   }
 }
+
+/* Stats */
+.stat_cards_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 44px;
+}
+
+.stat_card {
+  /* border: 5px solid white; */
+  padding: 22px 68px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat_value {
+  font-size: 36px;
+}

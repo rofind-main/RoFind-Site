@@ -26,3 +26,23 @@ export async function updateGameName(placeId, name) {
     const ref = doc(db, "games", toDocId(placeId));
     await updateDoc(ref, { game_name: name });
 }
+
+export async function deleteDuplicates() {
+    const snapshot = await getDocs(collection(db, "games"));
+    const seen = new Set();
+
+    for (const document of snapshot.docs) {
+        const placeId = document.data().placeId;
+        if (seen.has(placeId)) {
+            await deleteDoc(doc(db, "games", document.id));
+        } else {
+            seen.add(placeId);
+        }
+    }
+}
+
+// Statistics
+export async function getSubmittedGamesCount() {
+    const snapshot = await getDocs(collection(db, "games"));
+    return snapshot.size;
+}

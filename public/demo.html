@@ -38,6 +38,8 @@
 
 
     <div></div>
+    <input class="btn nofill_button" type="button" value="How to submit"
+      onclick="document.getElementById('view_demo').style.display = 'grid'" style="padding: 0px 32px; height: 100%;" />
     <input class="btn game_submission" type="button" value="Submit Game" style="height: 100%;" />
     <input class="btn normal_button" type="button" value="User"
       onclick="document.getElementById('user_notice').style.display = 'grid'"
@@ -189,6 +191,28 @@
           <p style="color: white">We are currently finding ways to implement this feature. Stay tuned!</p>
 
         </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Demo vid -->
+  <div class="popup" id="view_demo" style="z-index: 998; ;display:none">
+    <div class="popup_holder">
+
+      <div id="closebuttonholder">
+        <div></div>
+        <button type="button" class="btn normal_button" style="padding: 8px 16px;"
+          onclick="document.getElementById('view_demo').style.display='none'">Close</button>
+      </div>
+
+      <div class="view_container" style="width: min(700px, 90vw); display: block">
+        <div style="padding:55% 0 0 0;position:relative;">
+          <iframe src="https://api.satoplayer.com/players/embed/5de2ba00-926b-4e44-a7f0-a437feb83322" frameborder="0"
+            allow="autoplay; fullscreen; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
       </div>
 
     </div>

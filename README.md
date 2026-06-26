@@ -2,6 +2,15 @@
 
 > Discover games worth playing, shared by the people who actually play them.
 
+<p align="center">
+  <img src="./public/images/Preview/Main.png" width="45%" />
+  <img src="./public/images/Preview/User.png" width="45%" />
+</p>
+<p align="center">
+  <img src="./public/images/Preview/Preview.png" width="25%" />
+</p>
+<p align="center"><sub>These are early screenshots.</sub></p>
+
 ## What is RoFind?
 
 **RoFind** is an open-source platform where players recommend, rate, and discover games together.
@@ -10,9 +19,11 @@ Inspired by Better Discovery - Mariage Sorcière on Roblox.
 
 ## Technologies used
 
-1. Vercel (Hosting)
-2. Firebase (Database)
-3. Discord Webhook (Moderation of submissions)
+1. Roblox API (Game Information)
+2. Vercel (Hosting)
+3. Firebase (Database)
+4. Discord Webhook (Moderation of submissions)
+5. Sato Player (Video Embed)
 
 ## How it works
 
@@ -53,15 +64,19 @@ The `roblox://` protocol has been around for long too! (_found it by accident wh
 
 | Tested Browsers | Support |
 | --------------- | ------- |
-| Chrome          | ✅      |
-| Brave           | ✅      |
-| Firefox         | ✅      |
-| Opera           | ✅      |
-| Safari          | ❔      |
+| Chrome          | ✅       |
+| Brave           | ✅       |
+| Firefox         | ✅       |
+| Opera           | ✅       |
+| Safari          | ❔       |
 
 ## Have questions?
 
 Join the [Discord](https://discord.gg/CryHUshKT7) server! _Invite Code: (CryHUshKT7)_
+
+## AI Usage
+
+AI usage to this project is limited and only used for cleaning up code and fixing styling issues. Rest assured that the project has seen human intervention.
 
 ## License
 

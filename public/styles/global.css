@@ -35,7 +35,7 @@ nav {
   background: linear-gradient(180deg, rgb(25, 26, 31) 0%, rgba(255, 255, 255, 0) 100%);
   padding: 20px;
   display: grid;
-  grid-template-columns: auto 1fr max-content max-content;
+  grid-template-columns: auto 1fr max-content max-content max-content;
   gap: 20px;
   align-items: center;
 }
